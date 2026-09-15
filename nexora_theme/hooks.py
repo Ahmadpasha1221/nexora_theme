@@ -25,12 +25,18 @@ app_license = "mit"
 # ------------------
 
 # include js, css files in header of desk.html
-# app_include_css = "/assets/nexora_theme/css/nexora_theme.css"
-# app_include_js = "/assets/nexora_theme/js/nexora_theme.js"
+app_include_css = "/assets/nexora_theme/css/nexora_theme.css"
+app_include_js = "/assets/nexora_theme/js/nexora_theme_init.js"
 
 # include js, css files in header of web template
-# web_include_css = "/assets/nexora_theme/css/nexora_theme.css"
-# web_include_js = "/assets/nexora_theme/js/nexora_theme.js"
+web_include_css = [
+	"/assets/nexora_theme/css/nexora_theme.css",
+	"/assets/nexora_theme/css/login_starfield.css",
+]
+web_include_js = [
+	"/assets/nexora_theme/js/nexora_theme_init.js",
+	"/assets/nexora_theme/js/login_starfield.js",
+]
 
 # include custom scss in every website theme (without file extension ".scss")
 # website_theme_scss = "nexora_theme/public/scss/website"

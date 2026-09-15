@@ -1,0 +1,111 @@
+/**
+ * Nexora Design Tokens
+ *
+ * Primitive tokens (brand palette scales) → Semantic tokens (meaningful names)
+ * → Component tokens (element-specific values).
+ *
+ * These tokens are theme-independent. Theme-specific values are in theme.css.
+ * Frappe's CSS variable mappings consume the semantic tokens.
+ */
+
+/* ================================================================
+   Primitive Tokens — Nexora Brand Palette Scales
+   ================================================================ */
+
+:root {
+	/* ---- Primary: #280905 (dark burgundy) ---- */
+	--nexora-brand-50: #f6f1f1;
+	--nexora-brand-100: #e6dddd;
+	--nexora-brand-200: #d4c8c9;
+	--nexora-brand-300: #c1b3b4;
+	--nexora-brand-400: #ae9e9f;
+	--nexora-brand-500: #9b888a;
+	--nexora-brand-600: #887276;
+	--nexora-brand-700: #755c61;
+	--nexora-brand-800: #62464b;
+	--nexora-brand-900: #280905;
+
+	/* ---- Secondary: #740A03 (deep red) ---- */
+	--nexora-secondary-50: #fdf0f0;
+	--nexora-secondary-100: #fce2e2;
+	--nexora-secondary-200: #f8c4c4;
+	--nexora-secondary-300: #f4a6a6;
+	--nexora-secondary-400: #f08888;
+	--nexora-secondary-500: #e66a6a;
+	--nexora-secondary-600: #dc4c4c;
+	--nexora-secondary-700: #d22e2e;
+	--nexora-secondary-800: #c81010;
+	--nexora-secondary-900: #740A03;
+
+	/* ---- Accent: #C3110C (bright red) ---- */
+	--nexora-accent-50: #fff0ef;
+	--nexora-accent-100: #ffdedb;
+	--nexora-accent-200: #fec1bb;
+	--nexora-accent-300: #fda39b;
+	--nexora-accent-400: #fc857b;
+	--nexora-accent-500: #FB655B;
+	--nexora-accent-600: #EB554B;
+	--nexora-accent-700: #DB453B;
+	--nexora-accent-800: #CB352B;
+	--nexora-accent-900: #C3110C;
+
+	/* ---- Highlight: #E6501B (orange) ---- */
+	--nexora-highlight-50: #fef5ee;
+	--nexora-highlight-100: #fee6d3;
+	--nexora-highlight-200: #fdcda1;
+	--nexora-highlight-300: #fcb36f;
+	--nexora-highlight-400: #fba955;
+	--nexora-highlight-500: #fa953b;
+	--nexora-highlight-600: #f0822c;
+	--nexora-highlight-700: #e66f1d;
+	--nexora-highlight-800: #dd5c0e;
+	--nexora-highlight-900: #E6501B;
+
+	/* ---- Neutral scales (for surfaces and text) ---- */
+	--nexora-neutral-50: #fafafa;
+	--nexora-neutral-100: #f0f0f0;
+	--nexora-neutral-200: #e0e0e0;
+	--nexora-neutral-300: #c8c8c8;
+	--nexora-neutral-400: #b0b0b0;
+	--nexora-neutral-500: #989898;
+	--nexora-neutral-600: #808080;
+	--nexora-neutral-700: #666666;
+	--nexora-neutral-800: #4d4d4d;
+	--nexora-neutral-900: #333333;
+
+	/* ---- Status colors ---- */
+	--nexora-success-500: #12b76a;
+	--nexora-success-600: #0f9a56;
+	--nexora-success-700: #0c7d43;
+
+	--nexora-warning-500: #f79009;
+	--nexora-warning-600: #e07a00;
+	--nexora-warning-700: #c86400;
+
+	--nexora-danger-500: var(--nexora-accent-500);
+	--nexora-danger-600: var(--nexora-accent-600);
+	--nexora-danger-700: var(--nexora-accent-700);
+
+	--nexora-info-500: #2980b9;
+	--nexora-info-600: #1a6cb3;
+	--nexora-info-700: #165a9c;
+
+	/* ---- Component tokens ---- */
+	--nexora-radius-sm: 6px;
+	--nexora-radius-md: 10px;
+	--nexora-radius-lg: 14px;
+	--nexora-radius-xl: 18px;
+
+	--nexora-button-height-sm: 32px;
+	--nexora-button-height-md: 36px;
+	--nexora-button-height-lg: 42px;
+
+	--nexora-input-height: 36px;
+	--nexora-input-padding-x: 10px;
+	--nexora-input-padding-y: 6px;
+
+	--nexora-card-padding: 1.5rem;
+
+	--nexora-transition-duration: 150ms;
+	--nexora-transition-easing: ease-out;
+}
