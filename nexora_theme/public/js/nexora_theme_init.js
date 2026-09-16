@@ -1,25 +1,29 @@
 /**
- * Nexora Theme Init
+ * Nexora Theme Initialization
  *
- * Sets data-nexora-theme="default" on <html> when the page loads.
- * This activates the Nexora CSS variable override system.
+ * On page load, checks whether the user previously selected "Nexora Default"
+ * in the theme selector (stored in localStorage by nexora_theme_toggle.js).
+ * If so, sets data-nexora-theme="default" on <html> to activate the CSS
+ * variable overrides.
  *
- * Runs on both Desk (via app_include_js) and Website (via web_include_js).
- * The data-nexora-theme attribute is additive — it does not interfere
- * with Frappe's existing data-theme-mode / data-theme attributes.
+ * This is additive — it does not interfere with Frappe's existing
+ * data-theme-mode / data-theme attributes. Frappe's set_theme() updates
+ * data-theme in response to data-theme-mode changes; our CSS follows via
+ * the [data-nexora-theme="default"][data-theme="light|dark"] selectors.
  *
- * Frappe's set_theme() updates data-theme in response to data-theme-mode
- * changes (via MutationObserver). Our CSS selectors respond automatically.
+ * Login page starfield is handled separately in login_starfield.js
+ * and is isolated to body[data-path="login"].
  */
 
 (function () {
 	"use strict";
 
+	var NEXORA_THEME_KEY = "nexora_desk_theme";
+
 	function applyNexoraTheme() {
-		var root = document.documentElement;
-		var current = root.getAttribute("data-nexora-theme");
-		if (!current) {
-			root.setAttribute("data-nexora-theme", "default");
+		var saved = localStorage.getItem(NEXORA_THEME_KEY);
+		if (saved) {
+			document.documentElement.setAttribute("data-nexora-theme", saved);
 		}
 	}
 
@@ -32,7 +36,5 @@
 	}
 
 	onReady(applyNexoraTheme);
-
-	// Also apply immediately if documentElement is already available
 	applyNexoraTheme();
 })();

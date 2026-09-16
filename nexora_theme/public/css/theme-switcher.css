@@ -1,0 +1,123 @@
+/**
+ * Nexora Theme Switcher Preview Card
+ *
+ * When "Nexora Default" appears in Frappe's Switch Theme modal, this CSS
+ * styles its preview card to show actual Nexora colors. We target
+ * [data-nexora-theme="default"] on the preview div — this only matches
+ * the Nexora card, never the native Frappe previews.
+ *
+ * Note: We use primitive tokens (defined on :root in tokens.css) because
+ * semantic tokens like --nexora-border are only available when
+ * html[data-nexora-theme="default"] is set. The preview card's inner div
+ * may have data-nexora-theme="default" without html having it (when
+ * another Frappe theme is currently active but the user is browsing the
+ * selector). Primitive tokens are always available via :root.
+ */
+
+/* Define preview-specific colors using primitive tokens */
+.modal-body .theme-grid [data-nexora-theme="default"] {
+	--preview-bg: var(--nexora-brand-50);
+	--preview-surface: #ffffff;
+	--preview-text: var(--nexora-brand-900);
+	--preview-text-muted: var(--nexora-brand-600);
+	--preview-border: var(--nexora-brand-200);
+	--preview-border-strong: var(--nexora-brand-300);
+	--preview-navbar: var(--nexora-brand-900);
+	--preview-primary: var(--nexora-accent-500);
+	--preview-primary-hover: var(--nexora-accent-600);
+}
+
+/* Background surface — shows Nexora's light surface */
+.modal-body .theme-grid [data-nexora-theme="default"] .background {
+	background-color: var(--preview-surface);
+	/* Use layered shadow instead of border for depth (from make-interfaces-feel-better) */
+	box-shadow:
+		0 0 0 1px var(--preview-border),
+		0 1px 2px -1px rgba(40, 9, 5, 0.06),
+		0 2px 4px 0px rgba(40, 9, 5, 0.04);
+	border-radius: var(--nexora-radius-md);
+	height: 120px;
+	position: relative;
+
+	transition: box-shadow 150ms var(--nexora-transition-easing);
+}
+
+.modal-body .theme-grid [data-nexora-theme="default"] .background:hover {
+	box-shadow:
+		0 0 0 1px var(--preview-border),
+		0 4px 6px -1px rgba(40, 9, 5, 0.08),
+		0 8px 12px 0px rgba(40, 9, 5, 0.06);
+}
+
+/* Selected state — Nexora primary red ring */
+.modal-body .theme-grid [data-nexora-theme="default"].selected .background {
+	box-shadow: 0 0 0 2px var(--preview-primary);
+}
+
+/* Navbar bar in preview — dark burgundy */
+.modal-body .theme-grid [data-nexora-theme="default"] .navbar {
+	background-color: var(--preview-navbar);
+	height: 10px;
+}
+
+/* Toolbar (text placeholder + primary button) */
+.modal-body .theme-grid [data-nexora-theme="default"] .toolbar {
+	height: 10px;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 10px;
+}
+
+.modal-body .theme-grid [data-nexora-theme="default"] .text {
+	background-color: var(--preview-text-muted);
+	border-radius: var(--nexora-radius-sm);
+	height: 10px;
+	width: 40px;
+}
+
+.modal-body .theme-grid [data-nexora-theme="default"] .primary {
+	background-color: var(--preview-primary);
+	border-radius: var(--nexora-radius-sm);
+	height: 10px;
+	width: 20px;
+	z-index: 1;
+}
+
+/* Foreground cards — subtle surface */
+.modal-body .theme-grid [data-nexora-theme="default"] .foreground {
+	background-color: var(--preview-bg);
+	border: none;
+	box-shadow:
+		0 0 0 1px var(--preview-border),
+		0 1px 1px 0 rgba(40, 9, 5, 0.03);
+	border-radius: var(--nexora-radius-sm);
+	margin-top: var(--margin-sm);
+	height: 50px;
+}
+
+.modal-body .theme-grid [data-nexora-theme="default"] .foreground:first-child {
+	height: 30px;
+}
+
+/* Preview check (tick indicator) */
+.modal-body .theme-grid [data-nexora-theme="default"] .preview-check {
+	background-color: var(--preview-border);
+}
+
+.modal-body .theme-grid [data-nexora-theme="default"].selected .preview-check {
+	background-color: var(--preview-primary);
+}
+
+.modal-body .theme-grid [data-nexora-theme="default"] .preview-check .icon use {
+	stroke: #ffffff;
+}
+
+/* Theme title — Nexora dark burgundy text */
+.modal-body .theme-grid [data-nexora-theme="default"] .theme-title {
+	color: var(--preview-text);
+	font-weight: 500;
+}
+
+.modal-body .theme-grid [data-nexora-theme="default"] .mt-3 {
+	color: var(--preview-text);
+}

@@ -74,18 +74,26 @@
 	--nexora-neutral-900: #333333;
 
 	/* ---- Status colors ---- */
+	--nexora-success-50: #ecfdf5;
+	--nexora-success-100: #d1fae5;
 	--nexora-success-500: #12b76a;
 	--nexora-success-600: #0f9a56;
 	--nexora-success-700: #0c7d43;
 
+	--nexora-warning-50: #fffbeb;
+	--nexora-warning-100: #fef3c7;
 	--nexora-warning-500: #f79009;
 	--nexora-warning-600: #e07a00;
 	--nexora-warning-700: #c86400;
 
+	--nexora-danger-50: #fef2f2;
+	--nexora-danger-100: #fee2e2;
 	--nexora-danger-500: var(--nexora-accent-500);
 	--nexora-danger-600: var(--nexora-accent-600);
 	--nexora-danger-700: var(--nexora-accent-700);
 
+	--nexora-info-50: #eff6ff;
+	--nexora-info-100: #dbeafe;
 	--nexora-info-500: #2980b9;
 	--nexora-info-600: #1a6cb3;
 	--nexora-info-700: #165a9c;

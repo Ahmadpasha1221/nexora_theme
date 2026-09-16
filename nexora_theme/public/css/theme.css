@@ -1,0 +1,363 @@
+/**
+ * Nexora Theme — Semantic Tokens and Frappe Variable Mappings
+ *
+ * Maps Nexora semantic tokens to Frappe's existing CSS variables.
+ * Activated via html[data-nexora-theme="default"][data-theme="light|dark"]
+ *
+ * Frappe's set_theme() updates data-theme on <html> in response to
+ * data-theme-mode changes. This CSS automatically responds.
+ */
+
+/* ================================================================
+   Theme: Nexora Default — Light Mode
+   ================================================================ */
+
+html[data-nexora-theme="default"][data-theme="light"],
+:root[data-nexora-theme="default"] {
+	/* ---- Semantic surface tokens ---- */
+	--nexora-surface-bg: #ffffff;
+	--nexora-surface-fg: #ffffff;
+	--nexora-surface-raised: var(--nexora-brand-50);
+	--nexora-surface-hover: var(--nexora-brand-50);
+	--nexora-surface-active: var(--nexora-brand-100);
+	
+	/* navbar */
+	--nexora-navbar-bg: #224248;
+
+	/* background */
+	--nexora-bg: #F8FAFC;
+	--nexora-light-bg: #EEEAD7;
+
+	/* ---- Semantic border tokens ---- */
+	--nexora-border: var(--nexora-brand-200);
+	--nexora-border-subtle: var(--nexora-brand-100);
+	--nexora-border-strong: var(--nexora-brand-300);
+
+	/* ---- Semantic text tokens ---- */
+	--nexora-text: var(--nexora-brand-900);
+	--nexora-text-muted: var(--nexora-brand-600);
+	--nexora-text-disabled: var(--nexora-brand-500);
+
+	/* ---- Semantic action tokens ---- */
+	--nexora-primary: var(--nexora-accent-500);
+	--nexora-primary-hover: var(--nexora-accent-600);
+	--nexora-primary-active: var(--nexora-accent-700);
+	--nexora-primary-contrast: #ffffff;
+
+	--nexora-secondary: var(--nexora-secondary-900);
+	--nexora-secondary-hover: var(--nexora-secondary-800);
+	--nexora-secondary-active: var(--nexora-secondary-700);
+	--nexora-secondary-contrast: #ffffff;
+
+	--nexora-accent: var(--nexora-accent-500);
+	--nexora-highlight: var(--nexora-highlight-900);
+
+	/* ---- Frappe CSS variable mappings ---- */
+
+	/* Light mode: white surfaces, dark text */
+	--bg-color: var(--nexora-surface-bg);
+	--fg-color: var(--nexora-surface-fg);
+	--navbar-bg: var(--nexora-surface-bg);
+	--card-bg: var(--nexora-surface-fg);
+	--modal-bg: var(--nexora-surface-bg);
+	--popover-bg: var(--nexora-surface-bg);
+	--control-bg: var(--nexora-surface-fg);
+	--control-bg-on-gray: var(--nexora-surface-raised);
+	--awesomebar-focus-bg: var(--nexora-surface-fg);
+
+	/* Text colors */
+	--text-color: var(--nexora-text);
+	--text-muted: var(--nexora-text-muted);
+	--text-light: var(--nexora-text-muted);
+	--text-dark: var(--nexora-brand-900);
+	--heading-color: var(--nexora-brand-900);
+
+	/* Brand / primary */
+	--primary: var(--nexora-primary);
+	--brand-color: var(--nexora-primary);
+	--primary-color: var(--nexora-primary);
+
+	/* Buttons */
+	--btn-primary: var(--nexora-primary);
+	--btn-default-bg: var(--nexora-surface-raised);
+	--btn-default-hover-bg: var(--nexora-surface-hover);
+
+	/* Borders */
+	--border-color: var(--nexora-border);
+	--dark-border-color: var(--nexora-border-strong);
+	--border-primary: var(--nexora-brand-900);
+	--table-border-color: var(--nexora-border);
+	--btn-group-border-color: var(--nexora-border-subtle);
+
+	/* Focus rings (fixes Frappe's hardcoded #c9c9c9) */
+	--focus-default: 0px 0px 0px 2px var(--nexora-primary);
+	--focus-blue: 0px 0px 0px 2px var(--nexora-primary);
+
+	/* Form controls */
+	--input-disabled-bg: var(--nexora-brand-50);
+	--disabled-text-color: var(--nexora-text-muted);
+	--disabled-control-bg: var(--nexora-brand-50);
+
+	/* Checkbox / switch */
+	--checkbox-gradient: linear-gradient(180deg, var(--nexora-primary) -124.51%, var(--nexora-primary) 100%);
+	--checkbox-focus-shadow: 0 0 0 2px var(--nexora-primary);
+	--switch-bg: var(--nexora-brand-500);
+
+	/* Progress bar */
+	--progress-bar-bg: var(--nexora-primary);
+
+	/* Background/text pairs (Nexora color backgrounds) */
+	--bg-red: var(--nexora-secondary-100);
+	--bg-green: #dcf9e4;
+	--bg-blue: var(--nexora-accent-100);
+	--bg-yellow: #fef9db;
+	--bg-orange: var(--nexora-highlight-100);
+	--bg-gray: var(--nexora-brand-50);
+	--bg-purple: var(--nexora-secondary-50);
+
+	/* Text on colored backgrounds */
+	--text-on-red: var(--nexora-secondary-900);
+	--text-on-green: #064e35;
+	--text-on-blue: var(--nexora-accent-900);
+	--text-on-yellow: #783400;
+	--text-on-orange: var(--nexora-brand-900);
+	--text-on-gray: var(--nexora-brand-900);
+	--text-on-purple: var(--nexora-secondary-900);
+
+	/* Highlights */
+	--highlight-color: var(--nexora-brand-50);
+	--highlight-shadow: 1px 1px 10px var(--nexora-brand-50), 0px 0px 4px var(--nexora-primary);
+
+	/* Scrollbars */
+	--scrollbar-thumb-color: var(--nexora-brand-400);
+	--scrollbar-track-color: var(--nexora-brand-50);
+
+	/* UI elements */
+	--skeleton-bg: var(--nexora-brand-100);
+	--date-active-text: var(--nexora-brand-100);
+	--date-active-bg: var(--nexora-primary);
+	--date-range-bg: var(--nexora-brand-50);
+	--timeline-badge-color: var(--nexora-brand-900);
+	--timeline-badge-bg: var(--nexora-brand-100);
+	--sidebar-select-color: var(--nexora-brand-100);
+	--subtle-accent: var(--nexora-brand-50);
+	--subtle-fg: var(--nexora-brand-100);
+
+	/* Error / status */
+	--error-bg: #fff5f5;
+	--error-border: #fed7d7;
+
+	/* Toasts */
+	--toast-bg: var(--nexora-surface-raised);
+
+	/* Dropdown */
+	--dropdown-color: var(--nexora-text);
+	--dropdown-bg: var(--nexora-surface-fg);
+	--dropdown-border-color: var(--nexora-border);
+	--dropdown-link-color: var(--nexora-text);
+	--dropdown-link-hover-bg: var(--nexora-surface-hover);
+
+	/* Code blocks */
+	--code-block-bg: var(--nexora-neutral-900);
+	--code-block-text: var(--nexora-neutral-500);
+}
+
+/* ================================================================
+   Theme: Nexora Default — Dark Mode
+   ================================================================ */
+
+html[data-nexora-theme="default"][data-theme="dark"] {
+	/* ---- Semantic surface tokens (dark) ---- */
+	--nexora-surface-bg: #0a0a12;
+	--nexora-surface-fg: #12121a;
+	--nexora-surface-raised: #1a1a2e;
+	--nexora-surface-hover: #222236;
+	--nexora-surface-active: #2a2a3e;
+
+	/* ---- Semantic border tokens (dark) ---- */
+	--nexora-border: rgba(201, 17, 12, 0.15);
+	--nexora-border-subtle: rgba(201, 17, 12, 0.08);
+	--nexora-border-strong: rgba(201, 17, 12, 0.25);
+
+	/* ---- Semantic text tokens (dark) ---- */
+	--nexora-text: #f0e8e8;
+	--nexora-text-muted: #b39797;
+	--nexora-text-disabled: #8c6e6e;
+
+	/* ---- Semantic action tokens (dark) ---- */
+	--nexora-primary: var(--nexora-accent-500);
+	--nexora-primary-hover: var(--nexora-highlight-500);
+	--nexora-primary-active: var(--nexora-accent-700);
+	--nexora-primary-contrast: #ffffff;
+
+	--nexora-secondary: var(--nexora-secondary-900);
+	--nexora-secondary-hover: var(--nexora-highlight-500);
+	--nexora-secondary-active: var(--nexora-accent-700);
+	--nexora-secondary-contrast: #ffffff;
+
+	--nexora-accent: var(--nexora-accent-500);
+	--nexora-highlight: var(--nexora-highlight-500);
+
+	/* ---- Frappe CSS variable mappings (dark) ---- */
+
+	--bg-color: var(--nexora-surface-bg);
+	--fg-color: var(--nexora-surface-fg);
+	--navbar-bg: var(--nexora-surface-bg);
+	--card-bg: var(--nexora-surface-fg);
+	--modal-bg: var(--nexora-surface-fg);
+	--popover-bg: var(--nexora-surface-fg);
+	--control-bg: var(--nexora-surface-raised);
+	--control-bg-on-gray: var(--nexora-surface-raised);
+	--awesomebar-focus-bg: var(--nexora-surface-fg);
+
+	/* Text colors */
+	--text-color: var(--nexora-text);
+	--text-muted: var(--nexora-text-muted);
+	--text-light: var(--nexora-text-muted);
+	--text-dark: var(--nexora-text);
+	--heading-color: var(--nexora-text);
+
+	/* Brand / primary */
+	--primary: var(--nexora-primary);
+	--brand-color: var(--nexora-primary);
+	--primary-color: var(--nexora-primary);
+
+	/* Buttons */
+	--btn-primary: var(--nexora-primary);
+	--btn-default-bg: var(--nexora-surface-raised);
+	--btn-default-hover-bg: var(--nexora-surface-hover);
+
+	/* Borders */
+	--border-color: var(--nexora-border);
+	--dark-border-color: var(--nexora-border-strong);
+	--border-primary: var(--nexora-text);
+	--table-border-color: var(--nexora-border);
+	--btn-group-border-color: var(--nexora-border-subtle);
+
+	/* Focus rings */
+	--focus-default: 0px 0px 0px 2px var(--nexora-primary);
+	--focus-blue: 0px 0px 0px 2px var(--nexora-primary);
+	--focus-green: 0px 0px 0px 2px var(--nexora-success-500);
+	--focus-yellow: 0px 0px 0px 2px var(--nexora-warning-500);
+	--focus-red: 0px 0px 0px 2px var(--nexora-danger-600);
+
+	/* Form controls */
+	--input-disabled-bg: var(--nexora-surface-raised);
+	--disabled-text-color: var(--nexora-text-muted);
+	--disabled-control-bg: var(--nexora-surface-raised);
+
+	/* Checkbox / switch */
+	--checkbox-gradient: linear-gradient(180deg, var(--nexora-primary) -124.51%, var(--nexora-primary) 100%);
+	--checkbox-focus-shadow: 0 0 0 2px var(--nexora-primary);
+	--switch-bg: var(--nexora-brand-500);
+
+	/* Progress bar */
+	--progress-bar-bg: var(--nexora-primary);
+
+	/* Background/text pairs */
+	--bg-red: #2a0a0a;
+	--bg-green: #145b3c;
+	--bg-blue: #0c2e4d;
+	--bg-yellow: #451a03;
+	--bg-orange: #4a200e;
+	--bg-gray: var(--nexora-neutral-800);
+	--bg-purple: #311452;
+
+	/* Text on colored backgrounds */
+	--text-on-red: #fecfcffc;
+	--text-on-green: #dcf9e4;
+	--text-on-blue: #dbeafe;
+	--text-on-yellow: #fef9db;
+	--text-on-orange: #ffedd5;
+	--text-on-gray: #f0e8e8;
+	--text-on-purple: #f3e8ff;
+
+	/* Highlights */
+	--highlight-color: rgba(201, 17, 12, 0.08);
+	--highlight-shadow: 1px 1px 10px rgba(201, 17, 12, 0.1), 0px 0px 4px var(--nexora-accent-700);
+
+	/* Scrollbars */
+	--scrollbar-thumb-color: var(--nexora-neutral-600);
+	--scrollbar-track-color: var(--nexora-neutral-800);
+
+	/* UI elements */
+	--skeleton-bg: rgba(201, 17, 12, 0.1);
+	--date-active-text: var(--nexora-surface-bg);
+	--date-active-bg: var(--nexora-primary);
+	--date-range-bg: var(--nexora-border-subtle);
+	--timeline-badge-color: var(--nexora-text);
+	--timeline-badge-bg: var(--nexora-border);
+	--sidebar-select-color: var(--nexora-surface-fg);
+	--subtle-accent: var(--nexora-surface-raised);
+	--subtle-fg: var(--nexora-surface-raised);
+
+	/* Error / status */
+	--error-bg: rgba(220, 53, 69, 0.15);
+	--error-border: var(--nexora-danger-600);
+
+	/* Toasts */
+	--toast-bg: var(--nexora-surface-raised);
+
+	/* Dropdown */
+	--dropdown-color: var(--nexora-text);
+	--dropdown-bg: var(--nexora-surface-fg);
+	--dropdown-border-color: var(--nexora-border);
+	--dropdown-link-color: var(--nexora-text);
+	--dropdown-link-hover-bg: var(--nexora-surface-hover);
+
+	/* Code blocks */
+	--code-block-bg: #05050d;
+	--code-block-text: var(--nexora-neutral-500);
+
+	/* Diff colors */
+	--diff-added: #145b3c;
+	--diff-removed: rgba(220, 53, 69, 0.2);
+	--diff-changed: #0c2e4d;
+}
+
+/* ================================================================
+   Neutral / grayscale CSS variable overrides for Frappe
+   (only overrides what differs from Frappe's grayscale)
+   ================================================================ */
+
+html[data-nexora-theme="default"] {
+	/* Override Frappe's gray scale to use warm neutral with slight burgundy tint */
+	--gray-50: var(--nexora-brand-50);
+	--gray-100: #f0f0f0;
+	--gray-200: var(--nexora-brand-200);
+	--gray-300: var(--nexora-brand-300);
+	--gray-500: var(--nexora-brand-500);
+	--gray-600: var(--nexora-brand-600);
+	--gray-700: var(--nexora-brand-700);
+	--gray-800: var(--nexora-brand-800);
+	--gray-900: var(--nexora-brand-900);
+
+	/* Icon colors (light mode) */
+	--icon-stroke: var(--nexora-text-muted);
+	--icon-fill-bg: var(--nexora-text);
+
+	/* SVG arrow colors */
+	--right-arrow-svg: url("data:image/svg+xml;utf8, <svg width='6' height='8' viewBox='0 0 6 8' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M1.25 7.5L4.75 4L1.25 0.5' stroke='%23280905' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+	--left-arrow-svg: url("data:image/svg+xml;utf8, <svg width='6' height='8' viewBox='0 0 6 8' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M7.5 9.5L4 6l3.5-3.5' stroke='%23280905' stroke-linecap='round' stroke-linejoin='round'></path></svg>");
+
+	/* Arrow colors for dark mode */
+}
+
+html[data-nexora-theme="default"][data-theme="dark"] {
+	--icon-stroke: var(--nexora-text-muted);
+	--icon-fill-bg: var(--nexora-text);
+
+	--right-arrow-svg: url("data:image/svg+xml;utf8, <svg width='6' height='8' viewBox='0 0 6 8' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M1.25 7.5L4.75 4L1.25 0.5' stroke='%23f0e8e8' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+	--left-arrow-svg: url("data:image/svg+xml;utf8, <svg width='6' height='8' viewBox='0 0 6 8' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M7.5 9.5L4 6l3.5-3.5' stroke='%23f0e8e8' stroke-linecap='round' stroke-linejoin='round'></path></svg>");
+
+	/* Dark mode grays */
+	--gray-50: #12121a;
+	--gray-100: #1a1a2e;
+	--gray-200: #222236;
+	--gray-300: #2a2a3e;
+	--gray-500: #666666;
+	--gray-600: #555555;
+	--gray-700: #444444;
+	--gray-800: #383838;
+	--gray-900: #2a2a3e;
+}

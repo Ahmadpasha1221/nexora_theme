@@ -1,326 +1,1152 @@
 /**
- * Nexora Theme CSS Variable Override System
+ * Nexora Theme — Component Refinements
  *
- * Extends Frappe's existing three-theme toggle (light/dark/automatic) by
- * introducing a data-nexora-theme attribute on <html>. This file defines
- * Nexora's brand palette as CSS custom properties and maps them to
- * Frappe's existing CSS variables.
+ * Flat design refinements applied under html[data-nexora-theme="default"].
+ * Each component targets Frappe's existing class names without
+ * duplicating Frappe's entire stylesheet.
  *
- * Architecture:
- *   html[data-nexora-theme="default"][data-theme="light"] { ... }
- *   html[data-nexora-theme="default"][data-theme="dark"]  { ... }
- *
- * Frappe's set_theme() updates data-theme on <html> in response to
- * data-theme-mode changes. CSS variable overrides in this file automatically
- * follow because they use higher specificity than Frappe's base selectors.
- *
- * To add a new Nexora theme (e.g., "red"), duplicate the selector blocks
- * and adjust the brand values:
- *   html[data-nexora-theme="red"][data-theme="light"] { ... }
+ * Design principles followed (from make-interfaces-feel-better skill):
+ *   - Concentric border radius
+ *   - Shadows for elevation, borders for structure
+ *   - Text-wrap: balance on headings
+ *   - Tabular numbers on dynamic values
+ *   - Minimum 40px hit areas
+ *   - Scale on press (0.96)
+ *   - Interruptible CSS transitions
+ *   - No transition: all (explicit properties only)
  */
 
 /* ================================================================
-   Nexora Brand Palette (base, theme-independent)
+   Root typography & font smoothing
    ================================================================ */
+html[data-nexora-theme="default"] {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-size: 14px;
+}
 
-:root {
-	/* Primary: dark burgundy (#280905) */
-	--nexora-brand-50: #f6f1f1;
-	--nexora-brand-100: #e6dddd;
-	--nexora-brand-200: #d4c8c9;
-	--nexora-brand-300: #c1b3b4;
-	--nexora-brand-400: #ae9e9f;
-	--nexora-brand-500: #9b888a;
-	--nexora-brand-600: #887276;
-	--nexora-brand-700: #755c61;
-	--nexora-brand-800: #62464b;
-	--nexora-brand-900: #280905;
+/* Headings — balanced wrapping for short titles */
+html[data-nexora-theme="default"] h1,
+html[data-nexora-theme="default"] h2,
+html[data-nexora-theme="default"] h3,
+html[data-nexora-theme="default"] h4,
+html[data-nexora-theme="default"] h5,
+html[data-nexora-theme="default"] h6 {
+	text-wrap: balance;
+	font-weight: 600;
+}
 
-	/* Secondary: deep red (#740A03) */
-	--nexora-secondary-500: #740a03;
-	--nexora-secondary-600: #660900;
+/* Body text — prevent orphans */
+html[data-nexora-theme="default"] p,
+html[data-nexora-theme="default"] li,
+html[data-nexora-theme="default"] figcaption {
+	text-wrap: pretty;
+}
 
-	/* Accent: bright red (#C3110C) */
-	--nexora-accent-500: #c3110c;
-	--nexora-accent-600: #a70e0a;
-	--nexora-accent-700: #8b0b08;
-
-	/* Highlight: orange (#E6501B) */
-	--nexora-highlight-500: #e6501b;
-	--nexora-highlight-600: #c94113;
-	--nexora-highlight-400: #e96331;
+/* Dynamic numbers (tables, counters, prices) */
+html[data-nexora-theme="default"] .dataTable td,
+html[data-nexora-theme="default"] .o_wrapper .o_form_saved_or_unsaved,
+html[data-nexora-theme="default"] .badge {
+	font-variant-numeric: tabular-nums;
 }
 
 /* ================================================================
-   Theme: Nexora Default — Light Mode
+   Page transitions (subtle fade for navigations)
    ================================================================ */
+html[data-nexora-theme="default"] .page-content {
+	transition: opacity 150ms ease-out;
+}
 
-html[data-nexora-theme="default"][data-theme="light"] {
-	/* ---- Brand semantic tokens ---- */
-	--nexora-color-primary: var(--nexora-accent-500);
-	--nexora-color-primary-hover: var(--nexora-accent-600);
-	--nexora-color-primary-active: var(--nexora-brand-700);
-	--nexora-color-primary-contrast: #ffffff;
-
-	--nexora-color-accent: var(--nexora-accent-500);
-	--nexora-color-accent-hover: var(--nexora-accent-600);
-
-	--nexora-color-highlight: var(--nexora-highlight-500);
-	--nexora-color-highlight-hover: var(--nexora-highlight-600);
-
-	--nexora-color-secondary: var(--nexora-secondary-500);
-	--nexora-color-secondary-hover: var(--nexora-secondary-600);
-
-	/* ---- Surface tokens ---- */
-	--nexora-surface-bg: #ffffff;
-	--nexora-surface-fg: #ffffff;
-	--nexora-surface-border: var(--nexora-brand-200);
-	--nexora-surface-border-muted: var(--nexora-brand-300);
-	--nexora-surface-hover: var(--nexora-brand-50);
-
-	/* ---- Text tokens ---- */
-	--nexora-text-primary: var(--nexora-brand-900);
-	--nexora-text-muted: var(--nexora-brand-700);
-	--nexora-text-disabled: var(--nexora-brand-600);
-
-	/* ---- Map to Frappe CSS variables ---- */
-
-	/* Primary brand — used for links, checkboxes, radio, indicators */
-	--primary: var(--nexora-accent-500);
-	--brand-color: var(--nexora-accent-500);
-
-	/* Used in theme switcher, notifications, form controls */
-	--primary-color: var(--nexora-accent-500);
-
-	/* Button primary */
-	--btn-primary: var(--nexora-accent-500);
-
-	/* Focus rings (fixes Frappe's hardcoded #c9c9c9) */
-	--focus-default: 0px 0px 0px 2px var(--nexora-accent-500);
-	--focus-blue: 0px 0px 0px 2px var(--nexora-accent-500);
-	--focus-red: 0px 0px 0px 2px var(--nexora-accent-700);
-
-	/* Text colors */
-	--text-color: var(--nexora-brand-900);
-	--text-muted: var(--nexora-brand-700);
-	--text-light: var(--nexora-brand-600);
-	--text-dark: var(--nexora-brand-900);
-	--heading-color: var(--nexora-brand-900);
-
-	/* Background / surface */
-	--bg-color: var(--nexora-surface-bg);
-	--fg-color: var(--nexora-surface-fg);
-	--subtle-accent: var(--nexora-brand-50);
-	--subtle-fg: var(--nexora-brand-100);
-	--navbar-bg: var(--nexora-surface-bg);
-	--fg-hover-color: var(--nexora-brand-50);
-	--card-bg: var(--nexora-surface-fg);
-	--modal-bg: var(--nexora-surface-bg);
-	--popover-bg: var(--nexora-surface-bg);
-	--control-bg: var(--nexora-surface-bg);
-	--control-bg-on-gray: var(--nexora-brand-50);
-	--awesomebar-focus-bg: var(--nexora-surface-fg);
-
-	/* Border colors */
-	--border-color: var(--nexora-surface-border);
-	--dark-border-color: var(--nexora-surface-border-muted);
-	--border-primary: var(--nexora-brand-900);
-	--table-border-color: var(--nexora-surface-border);
-	--btn-group-border-color: var(--nexora-surface-border-muted);
-
-	/* Button defaults */
-	--btn-default-bg: var(--nexora-brand-50);
-	--btn-default-hover-bg: var(--nexora-brand-100);
-
-	/* Form controls */
-	--input-disabled-bg: var(--nexora-brand-100);
-	--disabled-text-color: var(--nexora-brand-600);
-	--disabled-control-bg: var(--nexora-brand-50);
-
-	/* Checkboxes / switches */
-	--checkbox-focus-shadow: 0 0 0 2px var(--nexora-accent-500);
-	--checkbox-gradient: linear-gradient(180deg, var(--nexora-accent-500) -124.51%, var(--nexora-accent-500) 100%);
-	--switch-bg: var(--nexora-brand-500);
-
-	/* Scrollbars */
-	--scrollbar-thumb-color: var(--nexora-brand-400);
-	--scrollbar-track-color: var(--nexora-brand-50);
-
-	/* Highlights / accents */
-	--highlight-color: var(--nexora-brand-50);
-	--highlight-shadow: 1px 1px 10px var(--nexora-brand-50), 0px 0px 4px var(--nexora-accent-500);
-
-	/* Progress bar */
-	--progress-bar-bg: var(--nexora-accent-500);
-
-	/* Awesomplete */
-	--awesomplete-hover-bg: var(--nexora-brand-50);
-
-	/* Skeleton */
-	--skeleton-bg: var(--nexora-brand-100);
-
-	/* Date picker */
-	--date-active-text: var(--nexora-brand-100);
-	--date-active-bg: var(--nexora-accent-500);
-	--date-range-bg: var(--nexora-brand-50);
-
-	/* Timeline */
-	--timeline-badge-color: var(--nexora-brand-900);
-	--timeline-badge-bg: var(--nexora-brand-100);
-
-	/* Code blocks */
-	--code-block-bg: var(--nexora-brand-900);
-	--code-block-text: var(--nexora-brand-600);
-
-	/* Toast notifications */
-	--toast-bg: var(--nexora-surface-fg);
-
-	/* Dropdown */
-	--dropdown-color: var(--nexora-text-primary);
-	--dropdown-bg: var(--nexora-surface-fg);
-
-	/* Error / status colors */
-	--error-bg: var(--nexora-brand-50);
-	--error-border: var(--nexora-accent-600);
+@media (prefers-reduced-motion: reduce) {
+	html[data-nexora-theme="default"] .page-content,
+	html[data-nexora-theme="default"] .navbar,
+	html[data-nexora-theme="default"] .btn,
+	html[data-nexora-theme="default"] .frappe-card {
+		transition: none;
+	}
 }
 
 /* ================================================================
-   Theme: Nexora Default — Dark Mode
+   Navbar
    ================================================================ */
 
-html[data-nexora-theme="default"][data-theme="dark"] {
-	/* ---- Brand semantic tokens (lighter variants for dark backgrounds) ---- */
-	--nexora-color-primary: var(--nexora-accent-500);
-	--nexora-color-primary-hover: var(--nexora-highlight-500);
-	--nexora-color-primary-active: var(--nexora-highlight-600);
-	--nexora-color-primary-contrast: #ffffff;
+/* Navbar brand / logo area — integrated dark burgundy */
+html[data-nexora-theme="default"] .navbar .navbar-brand,
+html[data-nexora-theme="default"] .navbar-brand {
+	color: var(--nexora-brand-900);
+	font-weight: 600;
+}
 
-	--nexora-color-accent: var(--nexora-accent-500);
-	--nexora-color-accent-hover: var(--nexora-highlight-500);
+html[data-nexora-theme="default"][data-theme="dark"] .navbar .navbar-brand,
+html[data-nexora-theme="default"][data-theme="dark"] .navbar-brand {
+	color: #f0e8e8;
+}
 
-	--nexora-color-highlight: var(--nexora-highlight-500);
-	--nexora-color-highlight-hover: var(--nexora-highlight-600);
+/* Navbar background — subtle surface, not stark white */
+html[data-nexora-theme="default"][data-theme="light"] .navbar,
+html[data-nexora-theme="default"][data-theme="light"] .navbar.navbar-light {
+	background-color: var(--nexora-navbar-bg);
+	border-bottom: 1px solid var(--nexora-border);
+}
 
-	--nexora-color-secondary: var(--nexora-secondary-500);
-	--nexora-color-secondary-hover: var(--nexora-accent-500);
+html[data-nexora-theme="default"][data-theme="dark"] .navbar {
+	background-color: var(--nexora-navbar-bg);
+	border-bottom: 1px solid var(--nexora-border);
+}
 
-	/* ---- Surface tokens (dark) ---- */
-	--nexora-surface-bg: #0a0a12;
-	--nexora-surface-fg: #1a1a2e;
-	--nexora-surface-border: rgba(228, 200, 200, 0.15);
-	--nexora-surface-border-muted: rgba(228, 200, 200, 0.1);
-	--nexora-surface-hover: #2a1f2f;
+/* Navbar links / buttons */
+html[data-nexora-theme="default"] .navbar .nav-link {
+	color: var(--nexora-text);
+}
 
-	/* ---- Text tokens (light text on dark) ---- */
-	--nexora-text-primary: #f0e8e8;
-	--nexora-text-muted: #c9a9a9;
-	--nexora-text-disabled: #a07a7a;
+html[data-nexora-theme="default"] .navbar .nav-link:hover {
+	color: var(--nexora-primary);
+	background-color: var(--nexora-surface-hover);
+	border-radius: var(--nexora-radius-sm);
+}
 
-	/* ---- Map to Frappe CSS variables ---- */
+/* Navbar dropdown */
+html[data-nexora-theme="default"] .navbar .dropdown-menu {
+	background-color: var(--nexora-surface-fg);
+	border: 1px solid var(--nexora-border);
+	border-radius: var(--nexora-radius-md);
+	box-shadow:
+		0 4px 12px rgba(40, 9, 5, 0.08);
+}
 
-	/* Primary brand */
-	--primary: var(--nexora-accent-500);
-	--brand-color: var(--nexora-accent-500);
-	--primary-color: var(--nexora-accent-500);
-	--btn-primary: var(--nexora-accent-500);
-
-	/* Focus rings */
-	--focus-default: 0px 0px 0px 2px var(--nexora-accent-500);
-	--focus-blue: 0px 0px 0px 2px var(--nexora-accent-500);
-
-	/* Text colors */
-	--text-color: var(--nexora-text-primary);
-	--text-muted: var(--nexora-text-muted);
-	--text-light: var(--nexora-text-muted);
-	--text-dark: var(--nexora-text-primary);
-	--heading-color: var(--nexora-text-primary);
-
-	/* Background / surface */
-	--bg-color: var(--nexora-surface-bg);
-	--fg-color: var(--nexora-surface-fg);
-	--subtle-accent: rgba(228, 200, 200, 0.08);
-	--subtle-fg: #2a1f2f;
-	--navbar-bg: var(--nexora-surface-bg);
-	--fg-hover-color: var(--nexora-surface-hover);
-	--card-bg: var(--nexora-surface-fg);
-	--modal-bg: var(--nexora-surface-fg);
-	--popover-bg: var(--nexora-surface-fg);
-	--control-bg: #2a1f2f;
-	--control-bg-on-gray: #3a2f3f;
-	--awesomebar-focus-bg: var(--nexora-surface-fg);
-
-	/* Border colors */
-	--border-color: var(--nexora-surface-border);
-	--dark-border-color: var(--nexora-surface-border-muted);
-	--border-primary: var(--nexora-text-primary);
-	--table-border-color: var(--nexora-surface-border);
-	--btn-group-border-color: var(--nexora-surface-border-muted);
-
-	/* Button defaults */
-	--btn-default-bg: var(--nexora-surface-hover);
-	--btn-default-hover-bg: #3a2f3f;
-
-	/* Form controls */
-	--input-disabled-bg: rgba(228, 200, 200, 0.1);
-	--disabled-text-color: var(--nexora-text-muted);
-	--disabled-control-bg: rgba(228, 200, 200, 0.08);
-
-	/* Checkboxes / switches */
-	--checkbox-focus-shadow: 0 0 0 2px var(--nexora-accent-500);
-	--checkbox-gradient: linear-gradient(180deg, var(--nexora-accent-500) -124.51%, var(--nexora-accent-500) 100%);
-	--switch-bg: var(--nexora-brand-500);
-
-	/* Scrollbars */
-	--scrollbar-thumb-color: #62464b;
-	--scrollbar-track-color: #2a1f2f;
-
-	/* Highlights / accents */
-	--highlight-color: rgba(228, 200, 200, 0.1);
-	--highlight-shadow: 1px 1px 10px rgba(195, 17, 12, 0.15), 0px 0px 4px rgba(230, 80, 27, 0.2);
-
-	/* Progress bar */
-	--progress-bar-bg: var(--nexora-accent-500);
-
-	/* Awesomplete */
-	--awesomplete-hover-bg: var(--nexora-surface-hover);
-
-	/* Skeleton */
-	--skeleton-bg: rgba(228, 200, 200, 0.1);
-
-	/* Date picker */
-	--date-active-text: var(--nexora-brand-800);
-	--date-active-bg: var(--nexora-accent-500);
-	--date-range-bg: var(--nexora-surface-border-muted);
-
-	/* Timeline */
-	--timeline-badge-color: var(--nexora-text-primary);
-	--timeline-badge-bg: var(--nexora-surface-border);
-
-	/* Code blocks */
-	--code-block-bg: #0d0d1a;
-	--code-block-text: var(--nexora-text-muted);
-
-	/* Toast notifications */
-	--toast-bg: var(--nexora-surface-fg);
-
-	/* Dropdown */
-	--dropdown-color: var(--nexora-text-primary);
-	--dropdown-bg: var(--nexora-surface-fg);
-
-	/* Error / status colors */
-	--error-bg: rgba(228, 200, 200, 0.1);
-	--error-border: var(--nexora-accent-600);
+html[data-nexora-theme="default"] .navbar .dropdown-item:hover {
+	background-color: var(--nexora-surface-hover);
+	color: var(--nexora-text);
 }
 
 /* ================================================================
-   Frappe theme-switcher preview overrides (keep in sync with
-   Nexora brand colors)
+   Sidebar
    ================================================================ */
 
-html[data-nexora-theme="default"][data-theme="light"] .selected .preview-check {
+/* Sidebar background — integrated with app, subtle elevation */
+html[data-nexora-theme="default"][data-theme="light"] .sidebar {
+	background-color: var(--nexora-surface-fg);
+	border-right: 1px solid var(--nexora-border-subtle);
+}
+
+html[data-nexora-theme="default"][data-theme="dark"] .sidebar {
+	background-color: var(--nexora-surface-fg);
+	border-right: 1px solid var(--nexora-border-subtle);
+}
+
+/* Sidebar items — no border around every item */
+html[data-nexora-theme="default"] .sidebar .sidebar-item {
+	border: none;
+}
+
+html[data-nexora-theme="default"] .sidebar .sidebar-item:hover {
+	background-color: var(--nexora-surface-hover);
+}
+
+/* Active sidebar item — Nexora primary indicator */
+html[data-nexora-theme="default"] .sidebar .sidebar-item.active,
+html[data-nexora-theme="default"] .sidebar .sidebar-item.router-link-exact-active {
+	background-color: var(--nexora-surface-hover);
+	border-left: 3px solid var(--nexora-accent-500);
+	color: var(--nexora-accent-500);
+	font-weight: 500;
+}
+
+html[data-nexora-theme="default"] .sidebar .sidebar-item.active .sidebar-label,
+html[data-nexora-theme="default"] .sidebar .sidebar-item a {
+	color: var(--nexora-text);
+}
+
+html[data-nexora-theme="default"] .sidebar .sidebar-item.active .sidebar-label {
+	color: var(--nexora-accent-500);
+}
+
+/* Sidebar collapsing button */
+html[data-nexora-theme="default"] .sidebar-controls {
+	border-right: 1px solid var(--nexora-border);
+}
+
+html[data-nexora-theme="default"] .sidebar-control-btn {
+	border: none;
+	background-color: var(--nexora-surface-fg);
+	color: var(--nexora-text-muted);
+	border-radius: var(--nexora-radius-sm);
+	transition: background-color 150ms var(--nexora-transition-easing);
+}
+
+html[data-nexora-theme="default"] .sidebar-control-btn:hover {
+	background-color: var(--nexora-surface-hover);
+	color: var(--nexora-text);
+}
+
+/* ================================================================
+   Buttons
+   ================================================================ */
+
+/* Base button — restrained, no heavy borders */
+html[data-nexora-theme="default"] .btn {
+	border: none;
+	border-radius: var(--nexora-radius-sm);
+	font-weight: 500;
+	font-size: 0.875rem;
+	transition:
+		background-color 150ms var(--nexora-transition-easing),
+		box-shadow 150ms var(--nexora-transition-easing),
+		transform 100ms ease;
+}
+
+/* Primary button — Nexora accent red */
+html[data-nexora-theme="default"] .btn-primary,
+html[data-nexora-theme="default"] .btn-primary:focus,
+html[data-nexora-theme="default"] .btn-primary:not(:disabled):not(.disabled):active {
+	background-color: var(--nexora-accent-500);
+	border: none;
+	color: var(--nexora-primary-contrast);
+	box-shadow: 0 1px 2px rgba(40, 9, 5, 0.1);
+}
+
+html[data-nexora-theme="default"] .btn-primary:not(:disabled):not(.disabled):hover {
+	background-color: var(--nexora-primary-hover);
+	box-shadow: 0 2px 4px rgba(40, 9, 5, 0.12);
+}
+
+html[data-nexora-theme="default"] .btn-primary:not(:disabled):not(.disabled):active {
+	transform: scale(0.96);
+}
+
+/* Primary outline button */
+html[data-nexora-theme="default"] .btn-primary-outline,
+html[data-nexora-theme="default"] .outline-primary {
+	color: var(--nexora-accent-500);
+	border: 1px solid var(--nexora-accent-500);
+	background: transparent;
+}
+
+html[data-nexora-theme="default"] .btn-primary-outline:hover,
+html[data-nexora-theme="default"] .outline-primary:hover {
+	background-color: var(--nexora-accent-500);
+	color: var(--nexora-primary-contrast);
+}
+
+/* Default/secondary button */
+html[data-nexora-theme="default"] .btn-default {
+	background-color: var(--nexora-surface-raised);
+	color: var(--nexora-text);
+	border: 1px solid var(--nexora-border);
+}
+
+html[data-nexora-theme="default"] .btn-default:hover {
+	background-color: var(--nexora-surface-hover);
+}
+
+/* Disabled button */
+html[data-nexora-theme="default"] .btn:disabled,
+html[data-nexora-theme="default"] .btn.disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+html[data-nexora-theme="default"] .btn:disabled:active {
+	transform: none;
+}
+
+/* Button group */
+html[data-nexora-theme="default"] .btn-group {
+	border-radius: var(--nexora-radius-sm);
+}
+
+html[data-nexora-theme="default"] .btn-group > .btn:first-child {
+	border-top-left-radius: var(--nexora-radius-sm);
+	border-bottom-left-radius: var(--nexora-radius-sm);
+}
+
+html[data-nexora-theme="default"] .btn-group > .btn:last-child {
+	border-top-right-radius: var(--nexora-radius-sm);
+	border-bottom-right-radius: var(--nexora-radius-sm);
+}
+
+/* Icon buttons */
+html[data-nexora-theme="default"] .btn-icon {
+	border-radius: var(--nexora-radius-sm);
+}
+
+html[data-nexora-theme="default"] .btn-icon:hover {
+	background-color: var(--nexora-surface-hover);
+}
+
+/* ================================================================
+   Inputs & Form Controls
+   ================================================================ */
+
+/* Input fields — clean surface, subtle border */
+html[data-nexora-theme="default"] .form-control {
+	background-color: var(--nexora-surface-fg);
+	border: 1px solid var(--nexora-border);
+	border-radius: var(--nexora-radius-sm);
+	color: var(--nexora-text);
+	height: var(--nexora-input-height);
+	padding: var(--nexora-input-padding-y) var(--nexora-input-padding-x);
+	transition:
+		border-color 150ms var(--nexora-transition-easing),
+		box-shadow 150ms var(--nexora-transition-easing);
+}
+
+html[data-nexora-theme="default"] .form-control:focus {
+	border-color: var(--nexora-accent-500);
+	box-shadow: var(--focus-default);
+}
+
+html[data-nexora-theme="default"] .form-control::placeholder {
+	color: var(--nexora-text-muted);
+}
+
+/* Input hover state */
+html[data-nexora-theme="default"] .form-control:hover {
+	border-color: var(--nexora-border-strong);
+}
+
+/* Disabled inputs */
+html[data-nexora-theme="default"] .form-control:disabled,
+html[data-nexora-theme="default"] .form-control[readonly] {
+	background-color: var(--input-disabled-bg);
+	color: var(--nexora-text-muted);
+	border-color: var(--nexora-border-subtle);
+}
+
+/* Select dropdown */
+html[data-nexora-theme="default"] .select-control,
+html[data-nexora-theme="default"] .form-select {
+	background-color: var(--nexora-surface-fg);
+	border: 1px solid var(--nexora-border);
+	border-radius: var(--nexora-radius-sm);
+	color: var(--nexora-text);
+	height: var(--nexora-input-height);
+	padding: 0 var(--nexora-input-padding-x);
+	background-image: var(--left-arrow-svg);
+	background-repeat: no-repeat;
+	background-position: right 10px center;
+	background-size: 14px;
+}
+
+html[data-nexora-theme="default"] .form-select:focus {
+	border-color: var(--nexora-accent-500);
+	box-shadow: var(--focus-default);
+}
+
+/* Checkbox — Nexora accent when checked */
+html[data-nexora-theme="default"] input[type="checkbox"]:checked {
+	background-color: var(--nexora-accent-500);
+	border-color: var(--nexora-accent-500);
+}
+
+html[data-nexora-theme="default"] input[type="checkbox"]:checked:focus {
+	box-shadow: var(--checkbox-focus-shadow);
+}
+
+/* Switch toggle */
+html[data-nexora-theme="default"] .onoffswitch {
+	margin: 0;
+}
+
+html[data-nexora-theme="default"] .onoffswitch-checkbox:checked + .onoffswitch-label {
 	background-color: var(--nexora-accent-500);
 }
 
-html[data-nexora-theme="default"][data-theme="dark"] .selected .preview-check {
+html[data-nexora-theme="default"] .onoffswitch-label {
+	border-radius: 9999px;
+}
+
+/* ================================================================
+   Cards
+   ================================================================ */
+
+/* Cards — surface-based, subtle border only where useful */
+html[data-nexora-theme="default"] .frappe-card {
+	background-color: var(--nexora-surface-fg);
+	border: 1px solid var(--nexora-border-subtle);
+	border-radius: var(--nexora-radius-md);
+	box-shadow:
+		0 0 0 1px var(--nexora-border-subtle),
+		0 1px 1px 0 rgba(40, 9, 5, 0.03);
+	padding: var(--nexora-card-padding);
+	transition:
+		box-shadow 150ms var(--nexora-transition-easing),
+		border-color 150ms var(--nexora-transition-easing);
+}
+
+html[data-nexora-theme="default"] .frappe-card:hover {
+	box-shadow:
+		0 0 0 1px var(--nexora-border-subtle),
+		0 2px 8px rgba(40, 9, 5, 0.06);
+	border-color: var(--nexora-border);
+}
+
+/* Card header */
+html[data-nexora-theme="default"] .card-header,
+html[data-nexora-theme="default"] .frappe-card .card-head {
+	background: transparent;
+	border-bottom: 1px solid var(--nexora-border-subtle);
+	padding-bottom: 0.75rem;
+	margin-bottom: 1rem;
+}
+
+/* Card title */
+html[data-nexora-theme="default"] .card-title h4,
+html[data-nexora-theme="default"] .card-head h5,
+html[data-nexora-theme="default"] .card-head h6 {
+	color: var(--nexora-text);
+	font-weight: 600;
+	font-size: 1.05rem;
+}
+
+/* Section break cards */
+html[data-nexora-theme="default"] .section-break {
+	border: none;
+	border-top: 1px solid var(--nexora-border-subtle);
+	margin: 1.5rem 0;
+}
+
+html[data-nexora-theme="default"] .section-break + .section-break {
+	margin-top: 1.5rem;
+}
+
+/* ================================================================
+   Tables
+   ================================================================ */
+
+/* Table — clean rows, subtle separators */
+html[data-nexora-theme="default"] .dataTable {
+	font-size: 0.875rem;
+}
+
+html[data-nexora-theme="default"] .dataTable thead th {
+	background-color: var(--nexora-surface-raised);
+	border-bottom: 1px solid var(--nexora-border);
+	color: var(--nexora-text);
+	font-weight: 600;
+	font-size: 0.75rem;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+html[data-nexora-theme="default"] .dataTable tbody tr {
+	border-bottom: 1px solid var(--nexora-border-subtle);
+	transition: background-color 150ms var(--nexora-transition-easing);
+}
+
+html[data-nexora-theme="default"] .dataTable tbody tr:hover {
+	background-color: var(--nexora-surface-hover);
+}
+
+html[data-nexora-theme="default"] .dataTable tbody td {
+	border: none;
+	padding: 0.75rem 0.75rem;
+	color: var(--nexora-text);
+}
+
+/* Table container — subtle shadow instead of box border */
+html[data-nexora-theme="default"] .table-hover,
+html[data-nexora-theme="default"] .data-table {
+	box-shadow:
+		0 0 0 1px var(--nexora-border-subtle),
+		0 1px 1px 0 rgba(40, 9, 5, 0.03);
+}
+
+/* List view table rows */
+html[data-nexora-theme="default"] .list-row,
+html[data-nexora-theme="default"] .list-row-collection .list-row {
+	border-bottom: 1px solid var(--nexora-border-subtle);
+	transition: background-color 150ms var(--nexora-transition-easing);
+}
+
+html[data-nexora-theme="default"] .list-row:hover {
+	background-color: var(--nexora-surface-hover);
+}
+
+/* ================================================================
+   Modals
+   ================================================================ */
+
+html[data-nexora-theme="default"] .modal-content {
+	background-color: var(--modal-bg);
+	border: 1px solid var(--nexora-border);
+	border-radius: var(--nexora-radius-lg);
+	box-shadow:
+		0 20px 25px -5px rgba(40, 9, 5, 0.1),
+		0 4px 6px -2px rgba(40, 9, 5, 0.05);
+}
+
+html[data-nexora-theme="default"] .modal-header {
+	border-bottom: 1px solid var(--nexora-border-subtle);
+}
+
+html[data-nexora-theme="default"] .modal-footer {
+	border-top: 1px solid var(--nexora-border-subtle);
+}
+
+/* Modal enter animation — subtle fade + scale */
+html[data-nexora-theme="default"] .modal.fade .modal-dialog {
+	transition: transform 200ms ease-out, opacity 150ms ease-out;
+}
+
+html[data-nexora-theme="default"] .modal.show .modal-dialog {
+	transform: translateY(-4px);
+}
+
+/* ================================================================
+   Dropdowns & Popovers
+   ================================================================ */
+
+html[data-nexora-theme="default"] .dropdown-menu {
+	background-color: var(--nexora-surface-fg);
+	border: 1px solid var(--nexora-border);
+	border-radius: var(--nexora-radius-md);
+	box-shadow:
+		0 4px 12px rgba(40, 9, 5, 0.1),
+		0 1px 2px -1px rgba(40, 9, 5, 0.06);
+}
+
+html[data-nexora-theme="default"] .dropdown-item:hover {
+	background-color: var(--nexora-surface-hover);
+	color: var(--nexora-text);
+}
+
+html[data-nexora-theme="default"] .dropdown-toggle::after {
+	color: var(--nexora-text-muted);
+}
+
+/* Popovers */
+html[data-nexora-theme="default"] .popover {
+	border: 1px solid var(--nexora-border);
+	border-radius: var(--nexora-radius-md);
+	box-shadow:
+		0 4px 12px rgba(40, 9, 5, 0.08);
+}
+
+/* ================================================================
+   Toasts / Alerts
+   ================================================================ */
+
+html[data-nexora-theme="default"] .alert {
+	border: none;
+	border-radius: var(--nexora-radius-sm);
+}
+
+html[data-nexora-theme="default"] .alert-info {
+	background-color: var(--nexora-info-100);
+	color: var(--nexora-info-700);
+}
+
+html[data-nexora-theme="default"] .alert-success {
+	background-color: var(--nexora-success-100);
+	color: var(--nexora-success-700);
+}
+
+html[data-nexora-theme="default"] .alert-warning {
+	background-color: var(--nexora-warning-100);
+	color: var(--nexora-warning-700);
+}
+
+html[data-nexora-theme="default"] .alert-error {
+	background-color: var(--nexora-danger-100);
+	color: var(--nexora-danger-700);
+}
+
+/* Toast notifications */
+html[data-nexora-theme="default"] .toast {
+	background-color: var(--nexora-surface-fg);
+	border: 1px solid var(--nexora-border);
+	border-radius: var(--nexora-radius-sm);
+	box-shadow:
+		0 4px 12px rgba(40, 9, 5, 0.08);
+}
+
+html[data-nexora-theme="default"] .toast-success {
+	border-left: 3px solid var(--nexora-success-500);
+}
+
+html[data-nexora-theme="default"] .toast-error {
+	border-left: 3px solid var(--nexora-danger-500);
+}
+
+/* ================================================================
+   Tabs
+   ================================================================ */
+
+html[data-nexora-theme="default"] .nav-tabs {
+	border-bottom: 1px solid var(--nexora-border-subtle);
+}
+
+html[data-nexora-theme="default"] .nav-tabs .nav-link {
+	border: none;
+	border-radius: 0;
+	color: var(--nexora-text-muted);
+	font-weight: 500;
+	padding: 0.75rem 1rem;
+	transition:
+		color 150ms var(--nexora-transition-easing),
+		border-color 150ms var(--nexora-transition-easing);
+}
+
+html[data-nexora-theme="default"] .nav-tabs .nav-link:hover {
+	color: var(--nexora-text);
+	background-color: var(--nexora-surface-hover);
+}
+
+html[data-nexora-theme="default"] .nav-tabs .nav-link.active {
+	color: var(--nexora-accent-500);
+	border-bottom: 2px solid var(--nexora-accent-500);
+	background: transparent;
+	font-weight: 600;
+}
+
+/* ================================================================
+   Badges
+   ================================================================ */
+
+html[data-nexora-theme="default"] .badge {
+	border-radius: var(--nexora-radius-sm);
+	font-weight: 500;
+	font-size: 0.725rem;
+	padding: 0.2rem 0.5rem;
+}
+
+html[data-nexora-theme="default"] .badge-primary {
 	background-color: var(--nexora-accent-500);
+	color: var(--nexora-primary-contrast);
+}
+
+html[data-nexora-theme="default"] .badge-danger {
+	background-color: var(--nexora-danger-500);
+	color: var(--nexora-primary-contrast);
+}
+
+html[data-nexora-theme="default"] .badge-success {
+	background-color: var(--nexora-success-500);
+	color: var(--nexora-primary-contrast);
+}
+
+html[data-nexora-theme="default"] .badge-warning {
+	background-color: var(--nexora-warning-500);
+	color: var(--nexora-brand-900);
+}
+
+html[data-nexora-theme="default"] .badge-info {
+	background-color: var(--nexora-info-500);
+	color: var(--nexora-primary-contrast);
+}
+
+html[data-nexora-theme="default"] .badge-light,
+html[data-nexora-theme="default"] .badge-secondary {
+	background-color: var(--nexora-surface-raised);
+	color: var(--nexora-text);
+}
+
+/* ================================================================
+   Form layout — cleaner field groups
+   ================================================================ */
+
+html[data-nexora-theme="default"] .form-section {
+	border: none;
+	border-bottom: 1px solid var(--nexora-border-subtle);
+	margin-bottom: 1.5rem;
+	padding-bottom: 1.5rem;
+}
+
+html[data-nexora-theme="default"] .form-section:last-child {
+	border-bottom: none;
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+html[data-nexora-theme="default"] .form-label {
+	color: var(--nexora-text);
+	font-weight: 500;
+	font-size: 0.8125rem;
+	margin-bottom: 0.25rem;
+}
+
+html[data-nexora-theme="default"] .form-label .required::after {
+	color: var(--nexora-accent-500);
+}
+
+html[data-nexora-theme="default"] .form-halves {
+	gap: 1.5rem;
+}
+
+html[data-nexora-theme="default"] .form-column {
+	padding: 0;
+}
+
+/* Control input wrapper */
+html[data-nexora-theme="default"] .control-input {
+	border-radius: var(--nexora-radius-sm);
+}
+
+/* ================================================================
+   Progress & Loading
+   ================================================================ */
+
+html[data-nexora-theme="default"] .progress {
+	border-radius: var(--nexora-radius-sm);
+}
+
+html[data-nexora-theme="default"] .progress-bar {
+	background: var(--progress-bar-bg);
+	border-radius: var(--nexora-radius-sm);
+	transition: width 300ms ease-out;
+}
+
+html[data-nexora-theme="default"] .spinner-border {
+	border-top-color: var(--nexora-accent-500);
+	border-right-color: var(--nexora-accent-500);
+	border-bottom-color: var(--nexora-accent-500);
+	border-left-color: transparent;
+}
+
+/* ================================================================
+   Date Picker
+   ================================================================ */
+
+html[data-nexora-theme="default"] .datepicker {
+	border: 1px solid var(--nexora-border);
+	border-radius: var(--nexora-radius-md);
+}
+
+html[data-nexora-theme="default"] .datepicker table th {
+	color: var(--nexora-text);
+	font-weight: 600;
+}
+
+html[data-nexora-theme="default"] .datepicker table td.active,
+html[data-nexora-theme="default"] .datepicker table td.active:hover {
+	background-color: var(--nexora-accent-500);
+	color: var(--nexora-primary-contrast);
+	border-radius: var(--nexora-radius-sm);
+}
+
+html[data-nexora-theme="default"] .datepicker table td.disabled {
+	color: var(--nexora-text-disabled);
+}
+
+/* ================================================================
+   Page headers & breadcrumbs
+   ================================================================ */
+
+html[data-nexora-theme="default"] .page-title {
+	color: var(--nexora-text);
+	font-weight: 600;
+	margin-bottom: 0.75rem;
+}
+
+html[data-nexora-theme="default"] .navbar-fixed {
+	border-bottom: 1px solid var(--nexora-border-subtle);
+}
+
+html[data-nexora-theme="default"] .breadcrumb {
+	background: transparent;
+	border: none;
+}
+
+html[data-nexora-theme="default"] .breadcrumb-item a {
+	color: var(--nexora-text-muted);
+}
+
+html[data-nexora-theme="default"] .breadcrumb-item + .breadcrumb-item::before {
+	color: var(--nexora-text-muted);
+}
+
+html[data-nexora-theme="default"] .breadcrumb-item.active {
+	color: var(--nexora-text);
+}
+
+/* ================================================================
+   Sidebar / Collapsible
+   ================================================================ */
+
+html[data-nexora-theme="default"] .slim-scroll {
+	border: none;
+}
+
+html[data-nexora-theme="default"] .page-sidebar .control-input {
+	border-color: var(--nexora-border-subtle);
+}
+
+html[data-nexora-theme="default"] .sidebar-menu > li > a {
+	border-left: 3px solid transparent;
+	transition: border-color 150ms var(--nexora-transition-easing);
+}
+
+html[data-nexora-theme="default"] .sidebar-menu > li > a:hover {
+	background-color: var(--nexora-surface-hover);
+}
+
+html[data-nexora-theme="default"] .sidebar-menu > li.active > a,
+html[data-nexora-theme="default"] .sidebar-menu > li > a.router-link-exact-active {
+	border-left-color: var(--nexora-accent-500);
+	color: var(--nexora-accent-500);
+	font-weight: 500;
+}
+
+/* ================================================================
+   List / Kanban views
+   ================================================================ */
+
+html[data-nexora-theme="default"] .kanban-board {
+	background-color: var(--nexora-surface-raised);
+	border-radius: var(--nexora-radius-md);
+}
+
+html[data-nexora-theme="default"] .kanban-board .kanban-column {
+	background-color: var(--nexora-surface-raised);
+	border: 1px solid var(--nexora-border-subtle);
+	border-radius: var(--nexora-radius-sm);
+}
+
+html[data-nexora-theme="default"] .kanban-board .kanban-card {
+	background-color: var(--nexora-surface-fg);
+	border: 1px solid var(--nexora-border-subtle);
+	border-radius: var(--nexora-radius-sm);
+	transition: box-shadow 150ms var(--nexora-transition-easing);
+}
+
+html[data-nexora-theme="default"] .kanban-board .kanban-card:hover {
+	box-shadow:
+		0 0 0 1px var(--nexora-border-subtle),
+		0 2px 8px rgba(40, 9, 5, 0.06);
+}
+
+/* ================================================================
+   Form grid — cleaner field borders
+   ================================================================ */
+
+html[data-nexora-theme="default"] .form-grid {
+	gap: 1rem;
+}
+
+html[data-nexora-theme="default"] .grid-row .control-input {
+	border-radius: var(--nexora-radius-sm);
+}
+
+html[data-nexora-theme="default"] .grid-body .data-row {
+	border-bottom: 1px solid var(--nexora-border-subtle);
+}
+
+html[data-nexora-theme="default"] .grid-body .data-row:hover {
+	background-color: var(--nexora-surface-hover);
+}
+
+/* ================================================================
+   Scrollbar — subtle, brand-tinted
+   ================================================================ */
+
+html[data-nexora-theme="default"] ::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+html[data-nexora-theme="default"] ::-webkit-scrollbar-track {
+	background-color: var(--scrollbar-track-color);
+}
+
+html[data-nexora-theme="default"] ::-webkit-scrollbar-thumb {
+	background-color: var(--scrollbar-thumb-color);
+	border-radius: 4px;
+}
+
+html[data-nexora-theme="default"] ::-webkit-scrollbar-thumb:hover {
+	background-color: var(--nexora-neutral-500);
+}
+
+
+/* Layout */
+
+html[data-nexora-theme="default"] .layout-side-section {
+	background-color: var(--nexora-bg);
+}
+
+html[data-nexora-theme="default"] .page-head {
+	background-color: var(--nexora-light-bg);
+}
+
+
+html[data-nexora-theme="default"] .container.page-body {
+    width: 100%;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 15px;
+    padding-right: 0;
+	background-color: var(--nexora-light-bg);
+}
+
+
+/* =========================================================
+   NEXORA — FLAT DESK SIDEBAR
+   Modern, minimal, no gradients, no glass effects
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   1. Sidebar base
+   --------------------------------------------------------- */
+
+html[data-nexora-theme="default"]  .standard-sidebar,
+.desk-sidebar,
+.search-dialog .search-results .search-sidebar {
+    font-size: var(--text-base);
+    font-weight: var(--weight-regular);
+    letter-spacing: 0.01em;
+
+    background: #f8fafc;
+    border-right: 1px solid #e2e8f0;
+
+    box-shadow: none;
+}
+
+
+/* ---------------------------------------------------------
+   2. Remove list defaults
+   --------------------------------------------------------- */
+
+html[data-nexora-theme="default"]  .standard-sidebar ul,
+.desk-sidebar ul,
+.search-dialog .search-results .search-sidebar ul {
+    padding-left: 0;
+    margin: 0;
+    list-style: none;
+}
+
+
+/* ---------------------------------------------------------
+   3. Sidebar item container
+   --------------------------------------------------------- */
+
+html[data-nexora-theme="default"]  .standard-sidebar .sidebar-item-container,
+.desk-sidebar .sidebar-item-container,
+.search-dialog .search-results .search-sidebar .sidebar-item-container {
+    position: relative;
+
+    margin-left: 0;
+    margin-right: 0;
+
+    padding: 2px 10px;
+}
+
+
+/* Workspaces currently applies -10px.
+   Neutralize it for the flat layout. */
+
+[data-page-route="Workspaces"] .sidebar-item-container {
+    margin-left: 0;
+}
+
+
+/* ---------------------------------------------------------
+   4. Sidebar item
+   --------------------------------------------------------- */
+
+html[data-nexora-theme="default"]  .standard-sidebar .sidebar-item,
+.desk-sidebar .sidebar-item {
+    display: flex;
+    align-items: center;
+
+    min-height: 38px;
+
+    padding: 0 12px;
+
+    border-radius: 6px;
+
+    color: #334155;
+
+    background: transparent;
+
+    transition:
+        background-color 120ms ease,
+        color 120ms ease;
+}
+
+
+/* ---------------------------------------------------------
+   5. Hover
+   --------------------------------------------------------- */
+
+html[data-nexora-theme="default"]  .standard-sidebar .sidebar-item:hover,
+.desk-sidebar .sidebar-item:hover {
+    background: #eef2f7;
+    color: #0f172a;
+}
+
+
+/* ---------------------------------------------------------
+   6. Active item
+   --------------------------------------------------------- */
+
+html[data-nexora-theme="default"]  .standard-sidebar .sidebar-item.selected,
+.standard-sidebar .sidebar-item.active,
+.desk-sidebar .sidebar-item.selected,
+.desk-sidebar .sidebar-item.active {
+    background: #e6f4f4;
+    color: #168b8f;
+
+    font-weight: 600;
+}
+
+
+/* ---------------------------------------------------------
+   7. Active indicator
+   --------------------------------------------------------- */
+
+html[data-nexora-theme="default"]  .standard-sidebar .sidebar-item.selected::before,
+.standard-sidebar .sidebar-item.active::before,
+.desk-sidebar .sidebar-item.selected::before,
+.desk-sidebar .sidebar-item.active::before {
+    content: "";
+
+    position: absolute;
+    left: 6px;
+
+    width: 3px;
+    height: 20px;
+
+    border-radius: 2px;
+
+    background: #168b8f;
+}
+
+
+/* ---------------------------------------------------------
+   8. Icons
+   --------------------------------------------------------- */
+
+html[data-nexora-theme="default"] .standard-sidebar .sidebar-item-icon,
+.desk-sidebar .sidebar-item-icon {
+    width: 20px;
+    min-width: 20px;
+
+    margin-right: 10px;
+
+    color: #64748b;
+}
+
+
+/* Active icon */
+
+html[data-nexora-theme="default"]  .standard-sidebar .sidebar-item.selected .sidebar-item-icon,
+.standard-sidebar .sidebar-item.active .sidebar-item-icon,
+.desk-sidebar .sidebar-item.selected .sidebar-item-icon,
+.desk-sidebar .sidebar-item.active .sidebar-item-icon {
+    color: #168b8f;
+}
+
+
+/* ---------------------------------------------------------
+   9. Sidebar text
+   --------------------------------------------------------- */
+
+html[data-nexora-theme="default"]  .standard-sidebar .sidebar-item-label,
+.desk-sidebar .sidebar-item-label {
+    color: inherit;
+
+    font-size: 14px;
+    line-height: 1.4;
+
+    white-space: nowrap;
+}
+
+
+/* ---------------------------------------------------------
+   10. Section headings
+   --------------------------------------------------------- */
+
+html[data-nexora-theme="default"]  .standard-sidebar .sidebar-item-container[data-section],
+.desk-sidebar .sidebar-item-container[data-section] {
+    margin-top: 14px;
+}
+
+
+/* ---------------------------------------------------------
+   11. Parent / expandable items
+   --------------------------------------------------------- */
+
+html[data-nexora-theme="default"]  .standard-sidebar .sidebar-item-container.has-children > .sidebar-item,
+.desk-sidebar .sidebar-item-container.has-children > .sidebar-item {
+    font-weight: 500;
+}
+
+
+/* ---------------------------------------------------------
+   12. Child navigation
+   --------------------------------------------------------- */
+
+html[data-nexora-theme="default"]  .standard-sidebar .sidebar-item-container .sidebar-item-container {
+    padding-left: 24px;
+}
+
+
+/* ---------------------------------------------------------
+   13. Expand/collapse icon
+   --------------------------------------------------------- */
+
+html[data-nexora-theme="default"]  html[data-nexora-theme="default"]  .standard-sidebar .sidebar-item-control,
+.desk-sidebar .sidebar-item-control {
+    margin-left: auto;
+
+    color: #94a3b8;
+}
+
+
+/* ---------------------------------------------------------
+   14. Scrollbar
+   --------------------------------------------------------- */
+
+html[data-nexora-theme="default"]  .standard-sidebar::-webkit-scrollbar,
+.desk-sidebar::-webkit-scrollbar {
+    width: 5px;
+}
+
+html[data-nexora-theme="default"]  .standard-sidebar::-webkit-scrollbar-track,
+.desk-sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+html[data-nexora-theme="default"]  .standard-sidebar::-webkit-scrollbar-thumb,
+.desk-sidebar::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+html[data-nexora-theme="default"]  .standard-sidebar::-webkit-scrollbar-thumb:hover,
+.desk-sidebar::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+
+/* ---------------------------------------------------------
+   15. Remove excessive rounded/card styling
+   --------------------------------------------------------- */
+
+html[data-nexora-theme="default"]  .standard-sidebar .sidebar-item,
+.desk-sidebar .sidebar-item {
+    box-shadow: none;
+}
+
+
+/* ---------------------------------------------------------
+   16. Keep sidebar flat
+   --------------------------------------------------------- */
+
+html[data-nexora-theme="default"]  .standard-sidebar,
+.desk-sidebar {
+    backdrop-filter: none;
+}
+
+/* .icon, .es-icon */
+    /* [data-page-route=Workspaces] .layout-main .layout-side-section, [data-page-route=Workspaces] .layout-main .layout-main-section-wrapper { */
+
+html[data-nexora-theme="default"] .layout-main .layout-main-section{
+	background-color: var(--nexora-light-bg);
+}
+
+html[data-nexora-theme="default"] .widget.onboarding-widget-box{
+	background-color: var(--nexora-light-bg);
 }

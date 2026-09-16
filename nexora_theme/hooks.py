@@ -25,16 +25,28 @@ app_license = "mit"
 # ------------------
 
 # include js, css files in header of desk.html
-app_include_css = "/assets/nexora_theme/css/nexora_theme.css"
-app_include_js = "/assets/nexora_theme/js/nexora_theme_init.js"
+app_include_css = [
+	"/assets/nexora_theme/css/tokens.css",
+	"/assets/nexora_theme/css/theme.css",
+	"/assets/nexora_theme/css/nexora_theme.css",
+	"/assets/nexora_theme/css/theme-switcher.css",
+]
+app_include_js = [
+	"/assets/nexora_theme/js/nexora_theme_init.js",
+	"/assets/nexora_theme/js/nexora_theme_toggle.js",
+]
 
 # include js, css files in header of web template
 web_include_css = [
+	"/assets/nexora_theme/css/tokens.css",
+	"/assets/nexora_theme/css/theme.css",
 	"/assets/nexora_theme/css/nexora_theme.css",
+	"/assets/nexora_theme/css/theme-switcher.css",
 	"/assets/nexora_theme/css/login_starfield.css",
 ]
 web_include_js = [
 	"/assets/nexora_theme/js/nexora_theme_init.js",
+	"/assets/nexora_theme/js/nexora_theme_toggle.js",
 	"/assets/nexora_theme/js/login_starfield.js",
 ]
 
