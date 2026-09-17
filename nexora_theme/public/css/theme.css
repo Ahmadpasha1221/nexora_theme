@@ -27,6 +27,7 @@ html[data-nexora-theme="default"][data-theme="light"],
 	/* background */
 	--nexora-bg: #F8FAFC;
 	--nexora-light-bg: #EEEAD7;
+	--nexora-lit-ver-bg:#F4F2E5;
 
 	/* ---- Semantic border tokens ---- */
 	--nexora-border: var(--nexora-brand-200);

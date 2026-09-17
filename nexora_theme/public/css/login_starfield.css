@@ -98,6 +98,7 @@ body[data-path="login"] {
 
 		.form-group {
 			margin-bottom: var(--margin-sm);
+			border-radius: var(--border-radius);
 		}
 
 		input[type="text"],
@@ -158,6 +159,18 @@ body[data-path="login"] {
 		}
 	}
 }
+
+.for-login .page-card .page-card-body .field-icon, .for-forgot .page-card .page-card-body .field-icon, .for-login-with-email-link .page-card .page-card-body .field-icon, .for-signup .page-card .page-card-body .field-icon, .for-email-login .page-card .page-card-body .field-icon{
+	top: 10px !important;
+}
+
+.for-login .page-card .page-card-body .email-field .toggle-password, .for-login .page-card .page-card-body .password-field .toggle-password, .for-forgot .page-card .page-card-body .email-field .toggle-password, .for-forgot .page-card .page-card-body .password-field .toggle-password, .for-login-with-email-link .page-card .page-card-body .email-field .toggle-password, .for-login-with-email-link .page-card .page-card-body .password-field .toggle-password, .for-signup .page-card .page-card-body .email-field .toggle-password, .for-signup .page-card .page-card-body .password-field .toggle-password, .for-email-login .page-card .page-card-body .email-field .toggle-password, .for-email-login .page-card .page-card-body .password-field .toggle-password{
+	top: 10px !important;
+}
+
+/* .for-login .page-card .page-card-body .email-field, .for-login .page-card .page-card-body .password-field, .for-forgot .page-card .page-card-body .email-field, .for-forgot .page-card .page-card-body .password-field, .for-login-with-email-link .page-card .page-card-body .email-field, .for-login-with-email-link .page-card .page-card-body .password-field, .for-signup .page-card .page-card-body .email-field, .for-signup .page-card .page-card-body .password-field, .for-email-login .page-card .page-card-body .email-field, .for-email-login .page-card .page-card-body .password-field{
+	background-color: transparent !important;
+} */
 
 .page-card-actions {
 	margin-top: var(--margin-lg);

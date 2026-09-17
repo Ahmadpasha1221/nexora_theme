@@ -357,6 +357,24 @@ html[data-nexora-theme="default"] .onoffswitch-label {
 }
 
 /* ================================================================
+   Form Layout Spacing
+   ================================================================= */
+
+html[data-nexora-theme="default"] .form-section .form-column {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+/* Prevent the first and last columns from creating excessive outer space */
+html[data-nexora-theme="default"] .form-section .form-column:first-child {
+    padding-left: 0;
+}
+
+html[data-nexora-theme="default"] .form-section .form-column:last-child {
+    padding-right: 0;
+}
+
+/* ================================================================
    Cards
    ================================================================ */
 
@@ -410,6 +428,7 @@ html[data-nexora-theme="default"] .section-break + .section-break {
 	margin-top: 1.5rem;
 }
 
+
 /* ================================================================
    Tables
    ================================================================ */
@@ -462,6 +481,8 @@ html[data-nexora-theme="default"] .list-row-collection .list-row {
 html[data-nexora-theme="default"] .list-row:hover {
 	background-color: var(--nexora-surface-hover);
 }
+
+
 
 /* ================================================================
    Modals
@@ -1150,3 +1171,89 @@ html[data-nexora-theme="default"] .layout-main .layout-main-section{
 html[data-nexora-theme="default"] .widget.onboarding-widget-box{
 	background-color: var(--nexora-light-bg);
 }
+
+html[data-nexora-theme="default"] .page-container{
+	background-color: var(--nexora-light-bg);
+}
+
+html[data-nexora-theme="default"] .widget.shortcut-widget-box{
+	background-color: var(--nexora-light-bg);
+}
+
+html[data-nexora-theme="default"] .codex-editor .codex-editor__redactor .ce-block .ce-block__content .widget.spacer{
+	background-color: var(--nexora-light-bg);
+}
+
+html[data-nexora-theme="default"] .widget.links-widget-box {
+	background-color: var(--nexora-light-bg);
+}
+
+html[data-nexora-theme="default"] .layout-main .layout-side-section{
+	background-color: var(--nexora-light-bg);
+}
+
+html[data-nexora-theme="default"] .desk-sidebar .standard-sidebar-section:last-of-type{
+	background-color: var(--nexora-light-bg);
+}
+
+html[data-nexora-theme="default"] .page-form,
+html[data-nexora-theme="default"] .page-form .standard-filter-section{
+	background-color: var(--nexora-light-bg);
+}
+
+
+html[data-nexora-theme="default"] .std-form-layout > .form-layout > .form-page{
+	background-color: var(--nexora-light-bg);
+}
+
+html[data-nexora-theme="default"] .form-tabs-list,
+html[data-nexora-theme="default"] .form-tabs-list .form-tabs .nav-item .nav-link,
+html[data-nexora-theme="default"] .list-row .level-left, .list-row-head .level-left{
+	background-color: var(--nexora-light-bg);
+}
+
+html[data-nexora-theme="default"] .tab-header,
+html[data-nexora-theme="default"] .tab-header .tab,
+html[data-nexora-theme="default"] .form-section-container,
+html[data-nexora-theme="default"] .form-builder-container .form-container,
+html[data-nexora-theme="default"] .form-section-container .form-section {
+    background-color: var(--nexora-lit-ver-bg);
+}
+
+html[data-nexora-theme="default"] .column{
+	background-color: var(--nexora-light-bg);
+}
+
+html[data-nexora-theme="default"]  .field{
+	background-color: var(--nexora-lit-ver-bg);
+}
+
+/* html[data-nexora-theme="default"] .form-group, */
+html[data-nexora-theme="default"] .frappe-control{
+	background-color: var(--nexora-lit-ver-bg);
+	padding-left: var(--nexora-card-padding);
+}
+
+html[data-nexora-theme="default"] .widget.number-widget-box,
+html[data-nexora-theme="default"] .widget.dashboard-widget-box{
+	background-color: var(--nexora-navbar-bg);
+}
+
+/* html[data-nexora-theme="default"] .ellipsis, .awesomplete > [role=listbox] > li, .awesomplete > [role=listbox] > [role=option], .widget.shortcut-widget-box .indicator-pill{
+	background-color: var(--nexora-light-bg);
+	border-radius: var(--nexora-radius-md);
+	padding: var(--nexora-list-padding);
+} */
+
+html[data-nexora-theme="default"] .widget.number-widget-box .widget-head .widget-title{
+/* html[data-nexora-theme="default"] .widget .widget-head .widget-label .widget-title{ */
+	color: var(--nexora-lit-ver-bg)
+}
+
+html[data-nexora-theme="default"] .widget.number-widget-box .widget-body .widget-content .number{
+	color: var(--nexora-lit-ver-bg);
+}
+
+
+
+/* [data-page-route=Workspaces] .codex-editor .codex-editor__redactor .ce-block .ce-block__content */

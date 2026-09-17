@@ -94,7 +94,7 @@
 			starChance: 0.15,
 		},
 		{
-			count: isMobile ? 10 : 35,
+			count: isMobile ? 10 : 45,
 			speed: 0.12,
 			radiusMin: 1.2,
 			radiusMax: 1.8,
