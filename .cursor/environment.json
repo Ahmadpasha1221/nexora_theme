@@ -1,0 +1,26 @@
+{
+	"name": "Nexora Theme",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"context": "."
+	},
+	"user": "ubuntu",
+	"install": "bash .cursor/scripts/install.sh",
+	"start": "bash .cursor/scripts/start.sh",
+	"terminals": [
+		{
+			"name": "frappe",
+			"command": "bash -lc 'export PATH=\"/home/ubuntu/.local/bin:$PATH\" && cd /home/ubuntu/frappe-bench && bench start'"
+		}
+	],
+	"ports": [
+		{
+			"name": "frappe-web",
+			"port": 8000
+		},
+		{
+			"name": "socketio",
+			"port": 9000
+		}
+	]
+}
