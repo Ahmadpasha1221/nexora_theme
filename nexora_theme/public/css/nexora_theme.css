@@ -1217,21 +1217,24 @@ html[data-nexora-theme="default"] .tab-header .tab,
 html[data-nexora-theme="default"] .form-section-container,
 html[data-nexora-theme="default"] .form-builder-container .form-container,
 html[data-nexora-theme="default"] .form-section-container .form-section {
-    background-color: var(--nexora-lit-ver-bg);
-}
-
-html[data-nexora-theme="default"] .column{
 	background-color: var(--nexora-light-bg);
 }
 
-html[data-nexora-theme="default"]  .field{
-	background-color: var(--nexora-lit-ver-bg);
+html[data-nexora-theme="default"] .column {
+	background-color: transparent;
 }
 
-/* html[data-nexora-theme="default"] .form-group, */
-html[data-nexora-theme="default"] .frappe-control{
-	background-color: var(--nexora-lit-ver-bg);
-	padding-left: var(--nexora-card-padding);
+/* Form builder tiles: one plane, hairline for structure (not a nested fill) */
+html[data-nexora-theme="default"] .field {
+	background-color: transparent;
+	border: 1px solid var(--nexora-border-subtle);
+	border-radius: var(--nexora-radius-sm);
+	box-shadow: none;
+}
+
+html[data-nexora-theme="default"] .frappe-control {
+	background-color: transparent;
+	padding-left: 0;
 }
 
 html[data-nexora-theme="default"] .widget.number-widget-box,
