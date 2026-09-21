@@ -1256,7 +1256,3 @@ html[data-nexora-theme="default"] .widget.number-widget-box .widget-head .widget
 html[data-nexora-theme="default"] .widget.number-widget-box .widget-body .widget-content .number{
 	color: var(--nexora-lit-ver-bg);
 }
-
-
-
-/* [data-page-route=Workspaces] .codex-editor .codex-editor__redactor .ce-block .ce-block__content */
