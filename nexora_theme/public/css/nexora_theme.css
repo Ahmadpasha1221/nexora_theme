@@ -1249,9 +1249,9 @@ html[data-nexora-theme="default"] .widget.dashboard-widget-box{
 } */
 
 html[data-nexora-theme="default"] .widget.number-widget-box .widget-head .widget-title{
-/* html[data-nexora-theme="default"] .widget .widget-head .widget-label .widget-title{ */
 	color: var(--nexora-lit-ver-bg)
 }
+/* html[data-nexora-theme="default"] .widget .widget-head .widget-label .widget-title{ */
 
 html[data-nexora-theme="default"] .widget.number-widget-box .widget-body .widget-content .number{
 	color: var(--nexora-lit-ver-bg);
