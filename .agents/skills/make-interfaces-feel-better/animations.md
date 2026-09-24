@@ -6,7 +6,7 @@ Interruptible animations, enter/exit transitions, contextual icon animations, an
 
 Users change intent mid-interaction. If animations aren't interruptible, the interface feels broken.
 
-### CSS Transitions vs. Keyframes
+## CSS Transitions vs. Keyframes
 
 | | CSS Transitions | CSS Keyframe Animations |
 | --- | --- | --- |
