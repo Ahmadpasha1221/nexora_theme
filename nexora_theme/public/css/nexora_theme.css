@@ -1302,9 +1302,9 @@ html[data-nexora-theme="default"] .new-timeline .timeline-content {
 	border-radius: var(--nexora-radius-md);
 }
 
-/* ================================================================
+/* ===============================================
    17. Scrollbars
-   ================================================================ */
+   ============================================= */
 
 html[data-nexora-theme="default"] ::-webkit-scrollbar {
 	width: 8px;
