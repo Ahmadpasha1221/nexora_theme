@@ -1230,6 +1230,15 @@ html[data-nexora-theme="default"] .field {
 	border: 1px solid var(--nexora-border-subtle);
 	border-radius: var(--nexora-radius-sm);
 	box-shadow: none;
+	transition-property: border-color;
+	transition-duration: 150ms;
+	transition-timing-function: var(--nexora-transition-easing);
+}
+
+html[data-nexora-theme="default"] .field:hover,
+html[data-nexora-theme="default"] .field.hovered,
+html[data-nexora-theme="default"] .field.selected {
+	border-color: var(--nexora-border);
 }
 
 html[data-nexora-theme="default"] .frappe-control {
