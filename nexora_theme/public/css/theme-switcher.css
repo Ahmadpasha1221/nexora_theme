@@ -1,0 +1,102 @@
+/**
+ * Nexora Theme Switcher Preview Card
+ *
+ * When "Nexora Default" appears in Frappe's Switch Theme modal, this CSS
+ * styles its preview card to show actual Nexora colors. We target
+ * [data-nexora-theme="default"] on the preview div — this only matches
+ * the Nexora card, never the native Frappe previews.
+ *
+ * Note: We use primitive tokens (defined on :root in tokens.css) because
+ * semantic tokens like --nexora-border are only available when
+ * html[data-nexora-theme="default"] is set.
+ */
+
+.modal-body .theme-grid [data-nexora-theme="default"] {
+	--preview-bg: var(--nexora-neutral-50);
+	--preview-surface: #ffffff;
+	--preview-text: var(--nexora-brand-900);
+	--preview-text-muted: var(--nexora-neutral-500);
+	--preview-border: var(--nexora-neutral-200);
+	--preview-navbar: #224248;
+	--preview-primary: var(--nexora-accent-900);
+}
+
+/* Background surface — flat, hairline border, no floating shadow */
+.modal-body .theme-grid [data-nexora-theme="default"] .background {
+	background-color: var(--preview-surface);
+	border: 1px solid var(--preview-border);
+	border-radius: var(--nexora-radius-md);
+	height: 120px;
+	position: relative;
+	transition: border-color 120ms ease-out;
+}
+
+.modal-body .theme-grid [data-nexora-theme="default"] .background:hover {
+	border-color: var(--nexora-neutral-300);
+}
+
+/* Selected state — Nexora primary ring */
+.modal-body .theme-grid [data-nexora-theme="default"].selected .background {
+	border-color: var(--preview-primary);
+	box-shadow: 0 0 0 1px var(--preview-primary);
+}
+
+/* Navbar bar in preview */
+.modal-body .theme-grid [data-nexora-theme="default"] .navbar {
+	background-color: var(--preview-navbar);
+	height: 10px;
+}
+
+.modal-body .theme-grid [data-nexora-theme="default"] .toolbar {
+	height: 10px;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 10px;
+}
+
+.modal-body .theme-grid [data-nexora-theme="default"] .text {
+	background-color: var(--preview-text-muted);
+	border-radius: var(--nexora-radius-xs);
+	height: 10px;
+	width: 40px;
+}
+
+.modal-body .theme-grid [data-nexora-theme="default"] .primary {
+	background-color: var(--preview-primary);
+	border-radius: var(--nexora-radius-xs);
+	height: 10px;
+	width: 20px;
+	z-index: 1;
+}
+
+/* Foreground cards — secondary surface with hairline */
+.modal-body .theme-grid [data-nexora-theme="default"] .foreground {
+	background-color: var(--preview-bg);
+	border: 1px solid var(--preview-border);
+	box-shadow: none;
+	border-radius: var(--nexora-radius-sm);
+	margin-top: var(--margin-sm);
+	height: 50px;
+}
+
+.modal-body .theme-grid [data-nexora-theme="default"] .foreground:first-child {
+	height: 30px;
+}
+
+.modal-body .theme-grid [data-nexora-theme="default"] .preview-check {
+	background-color: var(--preview-border);
+}
+
+.modal-body .theme-grid [data-nexora-theme="default"].selected .preview-check {
+	background-color: var(--preview-primary);
+}
+
+.modal-body .theme-grid [data-nexora-theme="default"] .preview-check .icon use {
+	stroke: #ffffff;
+}
+
+.modal-body .theme-grid [data-nexora-theme="default"] .theme-title,
+.modal-body .theme-grid [data-nexora-theme="default"] .mt-3 {
+	color: var(--preview-text);
+	font-weight: 500;
+}

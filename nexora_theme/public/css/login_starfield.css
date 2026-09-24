@@ -1,0 +1,310 @@
+body[data-path="login"] {
+	--nexora-login-bg: #0a0a12;
+	--nexora-login-star-distant: rgba(255, 255, 255, 0.35);
+	--nexora-login-star-mid: rgba(255, 255, 255, 0.55);
+	--nexora-login-star-foreground: rgba(255, 255, 255, 0.8);
+	--nexora-login-shooting-star: rgba(255, 255, 255, 0.9);
+	--nexora-login-card-bg: rgba(255, 255, 255, 0.72);
+	--nexora-login-card-border: rgba(255, 255, 255, 0.35);
+	--nexora-login-card-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08);
+	--nexora-login-text: #171717;
+	--nexora-login-text-muted: #525252;
+
+	--nexora-login-primary: #280905;
+	--nexora-login-secondary: #740a03;
+	--nexora-login-accent: #c3110c;
+	--nexora-login-highlight: #e6501b;
+
+	--nexora-star-canvas: #0a0a12;
+}
+
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+body[data-path="login"] {
+	background-color: var(--nexora-login-bg);
+	color: var(--nexora-login-text);
+	height: 100%;
+    overflow: hidden;
+}
+
+#nexora-star-canvas {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 0;
+}
+
+.page-content-wrapper {
+	position: relative;
+	z-index: 1;
+	height: 100dvh;
+    overflow: hidden;
+}
+
+.for-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100dvh;
+    min-height: 0;
+    padding: 1rem;
+    overflow: hidden;
+}
+
+.page-card-head {
+	padding: 2rem 0 14px 0;
+	margin: 0 auto;
+	text-align: center;
+
+	img.app-logo {
+		max-height: 42px;
+	}
+
+	h4 {
+		margin-top: 1rem;
+		font-size: var(--text-xl);
+		font-weight: var(--weight-semibold);
+		letter-spacing: 0.01em;
+		color: var(--nexora-login-text);
+	}
+}
+
+.for-login .page-card {
+	padding: 2rem 1.5rem;
+	background-color:transparent !important ;
+	/* backdrop-filter: blur(10px); */
+	/* -webkit-backdrop-filter: blur(10px); */
+	width: 30% !important;
+	margin: 0 auto;
+	border-radius: var(--border-radius-md);
+	border: none !important;
+	box-shadow: var(--nexora-login-card-shadow);
+
+	.page-card-body {
+		form {
+			max-width: 100%;
+		}
+
+		.form-group {
+			margin-bottom: var(--margin-sm);
+			border-radius: var(--border-radius);
+		}
+
+		input[type="text"],
+		input[type="email"],
+		input[type="password"] {
+			border: 1px solid var(--nexora-login-card-border);
+			color: var(--nexora-login-text);
+			-webkit-text-fill-color: var(--nexora-login-text);
+			caret-color: var(--nexora-login-text);
+			font-size: var(--text-base);
+			font-weight: var(--weight-regular);
+			letter-spacing: 0.02em;
+			background-color: rgba(0, 0, 0, 0.04);
+			margin-bottom: 1rem;
+			padding: 0.5rem 0.75rem;
+			border-radius: var(--border-radius);
+			height: 36px;
+			transition: border-color 0.15s ease, color 0.15s ease;
+			--text-color: var(--nexora-login-text);
+
+			&:focus {
+				color: #ffffff;
+				-webkit-text-fill-color: #ffffff;
+				caret-color: #ffffff;
+				--text-color: #ffffff;
+				border-color: var(--nexora-login-accent);
+				box-shadow: 0 0 0 2px var(--nexora-login-accent);
+				background-color: rgba(0, 0, 0, 0.05);
+			}
+
+			&::placeholder {
+				color: var(--nexora-login-text-muted);
+				-webkit-text-fill-color: var(--nexora-login-text-muted);
+				opacity: 1;
+			}
+		}
+	}
+
+	.email-field {
+		input {
+			padding-left: 35px;
+		}
+	}
+
+	.password-field {
+		input {
+			padding-left: 35px;
+		}
+
+		.toggle-password {
+			right: 9px;
+			top: 5px;
+			position: absolute;
+			z-index: 2;
+			cursor: pointer;
+			font-size: 12px;
+			color: var(--nexora-login-text-muted);
+		}
+	}
+}
+
+.for-login .page-card .page-card-body .field-icon, .for-forgot .page-card .page-card-body .field-icon, .for-login-with-email-link .page-card .page-card-body .field-icon, .for-signup .page-card .page-card-body .field-icon, .for-email-login .page-card .page-card-body .field-icon{
+	top: 10px !important;
+}
+
+.for-login .page-card .page-card-body .email-field .toggle-password, .for-login .page-card .page-card-body .password-field .toggle-password, .for-forgot .page-card .page-card-body .email-field .toggle-password, .for-forgot .page-card .page-card-body .password-field .toggle-password, .for-login-with-email-link .page-card .page-card-body .email-field .toggle-password, .for-login-with-email-link .page-card .page-card-body .password-field .toggle-password, .for-signup .page-card .page-card-body .email-field .toggle-password, .for-signup .page-card .page-card-body .password-field .toggle-password, .for-email-login .page-card .page-card-body .email-field .toggle-password, .for-email-login .page-card .page-card-body .password-field .toggle-password{
+	top: 10px !important;
+}
+
+/* .for-login .page-card .page-card-body .email-field, .for-login .page-card .page-card-body .password-field, .for-forgot .page-card .page-card-body .email-field, .for-forgot .page-card .page-card-body .password-field, .for-login-with-email-link .page-card .page-card-body .email-field, .for-login-with-email-link .page-card .page-card-body .password-field, .for-signup .page-card .page-card-body .email-field, .for-signup .page-card .page-card-body .password-field, .for-email-login .page-card .page-card-body .email-field, .for-email-login .page-card .page-card-body .password-field{
+	background-color: transparent !important;
+} */
+
+.page-card-actions {
+	margin-top: var(--margin-lg);
+
+	.btn-login {
+		padding: 0.5rem 1.5rem;
+		font-size: var(--text-base);
+		font-weight: var(--weight-medium);
+		border-radius: var(--border-radius);
+	}
+
+	.btn-primary {
+		background-color: var(--nexora-login-primary);
+		border-color: var(--nexora-login-primary);
+		color: var(--white);
+
+		&:hover {
+			background-color: var(--nexora-login-secondary);
+			border-color: var(--nexora-login-secondary);
+		}
+	}
+
+	.btn-default {
+		background-color: rgba(0, 0, 0, 0.03);
+		border-color: var(--nexora-login-card-border);
+		color: var(--nexora-login-text);
+
+		&:hover {
+			background-color: rgba(0, 0, 0, 0.06);
+		}
+	}
+}
+
+.sign-up-message {
+	margin-top: 1rem;
+	margin-bottom: 0;
+	color: var(--nexora-login-text-muted);
+	font-size: var(--text-sm);
+
+	a {
+		color: var(--nexora-login-accent);
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
+/* Error states — must remain highly visible through card transparency */
+.page-card-body.invalid {
+	input[type="text"],
+	input[type="email"],
+	input[type="password"] {
+		border: 1px solid var(--red-500);
+	}
+}
+
+.invalid-login {
+	animation: wiggle 0.5s linear;
+}
+
+@keyframes wiggle {
+	8%,
+	41% { transform: translateX(-10px); }
+	25%,
+	58% { transform: translateX(10px); }
+	75% { transform: translateX(-5px); }
+	92% { transform: translateX(5px); }
+	0%,
+	100% { transform: translateX(0); }
+}
+
+/* Links — ensure good contrast on semi-transparent card */
+.for-login a {
+	color: var(--nexora-login-accent);
+}
+
+/* Social login buttons */
+.btn-login-option {
+	font-size: var(--text-sm);
+	font-weight: var(--weight-regular);
+	color: var(--nexora-login-text);
+	background: rgba(0, 0, 0, 0.03);
+	box-shadow: none;
+	border: 1px solid var(--nexora-login-card-border);
+	display: flex;
+	place-content: center;
+	padding: 0.5rem 1rem;
+	border-radius: var(--border-radius);
+
+	&:hover {
+		background: rgba(0, 0, 0, 0.06);
+	}
+
+	img {
+		margin-right: var(--padding-xs);
+	}
+}
+
+.login-divider {
+	margin: var(--margin-md) 0;
+	color: var(--nexora-login-text-muted);
+	font-size: var(--text-sm);
+}
+
+/* Loading state */
+.btn-login:disabled,
+.btn-login[disabled] {
+	opacity: 0.7;
+	cursor: default;
+}
+
+/* Reduce motion support — disable starfield canvas visibility but keep page functional */
+@media (prefers-reduced-motion: reduce) {
+	#nexora-star-canvas {
+		display: none;
+	}
+}
+
+/* Mobile responsive */
+@media (max-width: 575px) {
+	.login-content.page-card {
+		padding: 1.5rem 1.25rem;
+		margin: 0 1rem;
+		max-width: calc(100% - 2rem);
+	}
+
+	.for-login {
+		padding-top: 1.5rem;
+		padding-bottom: 1.5rem;
+	}
+
+	.page-card-head h4 {
+		font-size: var(--text-lg);
+	}
+}

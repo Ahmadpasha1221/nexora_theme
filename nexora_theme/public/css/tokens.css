@@ -1,0 +1,151 @@
+/**
+ * Nexora Design Tokens
+ *
+ * Primitive tokens (brand palette scales) → Semantic tokens (meaningful names)
+ * → Component tokens (element-specific values).
+ *
+ * These tokens are theme-independent. Theme-specific values are in theme.css.
+ * Frappe's CSS variable mappings consume the semantic tokens.
+ *
+ * Design language: Frappe v15 / ERPNext flat business UI.
+ * Surface + border + spacing do the work; shadows are a last resort.
+ */
+
+/* ================================================================
+   Primitive Tokens — Nexora Brand Palette Scales
+   ================================================================ */
+
+:root {
+	/* ---- Primary: #280905 (dark burgundy) ---- */
+	--nexora-brand-50: #f6f1f1;
+	--nexora-brand-100: #e6dddd;
+	--nexora-brand-200: #d4c8c9;
+	--nexora-brand-300: #c1b3b4;
+	--nexora-brand-400: #ae9e9f;
+	--nexora-brand-500: #9b888a;
+	--nexora-brand-600: #887276;
+	--nexora-brand-700: #755c61;
+	--nexora-brand-800: #62464b;
+	--nexora-brand-900: #280905;
+
+	/* ---- Secondary: #740A03 (deep red) ---- */
+	--nexora-secondary-50: #fdf0f0;
+	--nexora-secondary-100: #fce2e2;
+	--nexora-secondary-200: #f8c4c4;
+	--nexora-secondary-300: #f4a6a6;
+	--nexora-secondary-400: #f08888;
+	--nexora-secondary-500: #e66a6a;
+	--nexora-secondary-600: #dc4c4c;
+	--nexora-secondary-700: #d22e2e;
+	--nexora-secondary-800: #c81010;
+	--nexora-secondary-900: #740a03;
+
+	/* ---- Accent: #C3110C (bright red) ---- */
+	--nexora-accent-50: #fff0ef;
+	--nexora-accent-100: #ffdedb;
+	--nexora-accent-200: #fec1bb;
+	--nexora-accent-300: #fda39b;
+	--nexora-accent-400: #fc857b;
+	--nexora-accent-500: #fb655b;
+	--nexora-accent-600: #eb554b;
+	--nexora-accent-700: #db453b;
+	--nexora-accent-800: #cb352b;
+	--nexora-accent-900: #c3110c;
+
+	/* ---- Highlight: #E6501B (orange) ---- */
+	--nexora-highlight-50: #fef5ee;
+	--nexora-highlight-100: #fee6d3;
+	--nexora-highlight-200: #fdcda1;
+	--nexora-highlight-300: #fcb36f;
+	--nexora-highlight-400: #fba955;
+	--nexora-highlight-500: #fa953b;
+	--nexora-highlight-600: #f0822c;
+	--nexora-highlight-700: #e66f1d;
+	--nexora-highlight-800: #dd5c0e;
+	--nexora-highlight-900: #e6501b;
+
+	/* ---- Neutral scale — the 60% of the interface ---- */
+	--nexora-neutral-25: #fbfbfc;
+	--nexora-neutral-50: #f6f7f9;
+	--nexora-neutral-100: #eff1f4;
+	--nexora-neutral-150: #e7eaee;
+	--nexora-neutral-200: #dfe3e8;
+	--nexora-neutral-300: #c9cfd6;
+	--nexora-neutral-400: #a6aeb8;
+	--nexora-neutral-500: #828b96;
+	--nexora-neutral-600: #646d78;
+	--nexora-neutral-700: #4a525c;
+	--nexora-neutral-800: #323840;
+	--nexora-neutral-900: #1c2127;
+
+	/* ---- Status colors ---- */
+	--nexora-success-50: #ecfdf5;
+	--nexora-success-100: #d1fae5;
+	--nexora-success-500: #12b76a;
+	--nexora-success-600: #0f9a56;
+	--nexora-success-700: #0c7d43;
+
+	--nexora-warning-50: #fffbeb;
+	--nexora-warning-100: #fef3c7;
+	--nexora-warning-500: #f79009;
+	--nexora-warning-600: #e07a00;
+	--nexora-warning-700: #c86400;
+
+	--nexora-danger-50: #fef2f2;
+	--nexora-danger-100: #fee2e2;
+	--nexora-danger-500: var(--nexora-accent-800);
+	--nexora-danger-600: var(--nexora-accent-900);
+	--nexora-danger-700: #9c0d09;
+
+	--nexora-info-50: #eff6ff;
+	--nexora-info-100: #dbeafe;
+	--nexora-info-500: #2980b9;
+	--nexora-info-600: #1a6cb3;
+	--nexora-info-700: #165a9c;
+
+	/* ---- Radius — restrained, flat-design friendly ---- */
+	--nexora-radius-xs: 3px;
+	--nexora-radius-sm: 4px; /* controls: inputs, buttons, badges */
+	--nexora-radius-md: 6px; /* cards, widgets */
+	--nexora-radius-lg: 8px; /* major containers, modals */
+	--nexora-radius-xl: 10px;
+
+	/* ---- Control sizing — compact, enterprise data entry ---- */
+	--nexora-button-height-sm: 26px;
+	--nexora-button-height-md: 30px;
+	--nexora-button-height-lg: 36px;
+
+	--nexora-input-height: 30px;
+	--nexora-input-padding-x: 8px;
+	--nexora-input-padding-y: 4px;
+
+	/* ---- Spacing scale ---- */
+	--nexora-space-1: 4px;
+	--nexora-space-2: 8px;
+	--nexora-space-3: 12px;
+	--nexora-space-4: 16px;
+	--nexora-space-5: 20px;
+	--nexora-space-6: 24px;
+
+	/* ---- Component tokens ---- */
+	--nexora-card-padding: 14px 16px;
+	--nexora-card-gap: 12px;
+	--nexora-list-padding: 6px;
+	--nexora-sidebar-item-height: 30px;
+
+	/* ---- Typography scale ---- */
+	--nexora-font-page-title: 1.25rem; /* 18px at 14px root */
+	--nexora-font-section: 0.9375rem;
+	--nexora-font-card-title: 0.8125rem;
+	--nexora-font-value: 1.5rem;
+	--nexora-font-body: 0.875rem;
+	--nexora-font-meta: 0.75rem;
+
+	/* ---- Elevation — minimal by design ---- */
+	--nexora-shadow-none: none;
+	--nexora-shadow-hover: 0 1px 3px rgba(28, 33, 39, 0.08);
+	--nexora-shadow-overlay: 0 6px 16px rgba(28, 33, 39, 0.12);
+
+	--nexora-transition-duration: 120ms;
+	--nexora-transition-easing: ease-out;
+}

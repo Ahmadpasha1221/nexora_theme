@@ -1,0 +1,372 @@
+/**
+ * Nexora Theme — Semantic Tokens and Frappe Variable Mappings
+ *
+ * Maps Nexora semantic tokens to Frappe's existing CSS variables.
+ * Activated via html[data-nexora-theme="default"][data-theme="light|dark"]
+ *
+ * Frappe's set_theme() updates data-theme on <html> in response to
+ * data-theme-mode changes. This CSS automatically responds.
+ *
+ * 60 / 30 / 10 split
+ *   60% --nexora-bg           page / workspace / list backgrounds (neutral)
+ *   30% --nexora-surface-*    sidebar, cards, panels, sections
+ *   10% --nexora-primary      active nav, primary buttons, key numbers, focus
+ */
+
+/* ================================================================
+   Theme: Nexora Default — Light Mode
+   ================================================================ */
+
+html[data-nexora-theme="default"][data-theme="light"],
+:root[data-nexora-theme="default"] {
+	/* ---- 60%: dominant page surface ---- */
+	--nexora-bg: var(--nexora-neutral-50);
+	--nexora-bg-sunken: var(--nexora-neutral-100);
+
+	/* ---- 30%: secondary surfaces (cards, sidebar, panels) ---- */
+	--nexora-surface-bg: var(--nexora-neutral-50);
+	--nexora-surface-fg: #ffffff;
+	--nexora-surface-raised: var(--nexora-neutral-100);
+	--nexora-surface-hover: var(--nexora-neutral-100);
+	--nexora-surface-active: var(--nexora-neutral-150);
+	--nexora-sidebar-bg: #ffffff;
+	--nexora-card-bg: #ffffff;
+	--nexora-card-header-bg: transparent;
+	--nexora-table-header-bg: var(--nexora-neutral-50);
+
+	/* navbar — intentionally unchanged component */
+	--nexora-navbar-bg: #224248;
+	--nexora-navbar-fg: #eef2f2;
+
+	/* legacy aliases kept so older selectors keep resolving */
+	--nexora-light-bg: var(--nexora-bg);
+	--nexora-lit-ver-bg: var(--nexora-neutral-25);
+
+	/* ---- Semantic border tokens ---- */
+	--nexora-border: var(--nexora-neutral-200);
+	--nexora-border-subtle: var(--nexora-neutral-150);
+	--nexora-border-strong: var(--nexora-neutral-300);
+
+	/* ---- Semantic text tokens ---- */
+	--nexora-text: var(--nexora-neutral-900);
+	--nexora-text-heading: var(--nexora-brand-900);
+	--nexora-text-muted: var(--nexora-neutral-600);
+	--nexora-text-subtle: var(--nexora-neutral-500);
+	--nexora-text-disabled: var(--nexora-neutral-400);
+
+	/* ---- 10%: accent / action tokens ---- */
+	--nexora-primary: var(--nexora-accent-900);
+	--nexora-primary-hover: #a80e0a;
+	--nexora-primary-active: #920c08;
+	--nexora-primary-contrast: #ffffff;
+	--nexora-primary-subtle: var(--nexora-accent-50);
+	--nexora-primary-subtle-border: var(--nexora-accent-200);
+
+	--nexora-secondary: var(--nexora-secondary-900);
+	--nexora-secondary-hover: var(--nexora-secondary-800);
+	--nexora-secondary-active: var(--nexora-secondary-700);
+	--nexora-secondary-contrast: #ffffff;
+
+	--nexora-accent: var(--nexora-accent-900);
+	--nexora-highlight: var(--nexora-highlight-900);
+
+	/* ---- Frappe CSS variable mappings ---- */
+	--bg-color: var(--nexora-bg);
+	--fg-color: var(--nexora-surface-fg);
+	--navbar-bg: var(--nexora-navbar-bg);
+	--card-bg: var(--nexora-card-bg);
+	--modal-bg: var(--nexora-surface-fg);
+	--popover-bg: var(--nexora-surface-fg);
+	--control-bg: var(--nexora-surface-fg);
+	--control-bg-on-gray: var(--nexora-surface-raised);
+	--awesomebar-focus-bg: var(--nexora-surface-fg);
+
+	/* Text colors */
+	--text-color: var(--nexora-text);
+	--text-muted: var(--nexora-text-muted);
+	--text-light: var(--nexora-text-subtle);
+	--text-dark: var(--nexora-text);
+	--heading-color: var(--nexora-text-heading);
+
+	/* Brand / primary */
+	--primary: var(--nexora-primary);
+	--brand-color: var(--nexora-primary);
+	--primary-color: var(--nexora-primary);
+
+	/* Buttons */
+	--btn-primary: var(--nexora-primary);
+	--btn-default-bg: var(--nexora-surface-fg);
+	--btn-default-hover-bg: var(--nexora-surface-hover);
+
+	/* Borders */
+	--border-color: var(--nexora-border);
+	--dark-border-color: var(--nexora-border-strong);
+	--border-primary: var(--nexora-primary);
+	--table-border-color: var(--nexora-border);
+	--btn-group-border-color: var(--nexora-border);
+
+	/* Focus rings (fixes Frappe's hardcoded #c9c9c9) */
+	--focus-default: 0px 0px 0px 2px var(--nexora-primary-subtle-border);
+	--focus-blue: 0px 0px 0px 2px var(--nexora-primary-subtle-border);
+
+	/* Form controls */
+	--input-disabled-bg: var(--nexora-neutral-100);
+	--disabled-text-color: var(--nexora-text-muted);
+	--disabled-control-bg: var(--nexora-neutral-100);
+
+	/* Checkbox / switch */
+	--checkbox-gradient: linear-gradient(180deg, var(--nexora-primary) 0%, var(--nexora-primary) 100%);
+	--checkbox-focus-shadow: 0 0 0 2px var(--nexora-primary-subtle-border);
+	--switch-bg: var(--nexora-neutral-400);
+
+	/* Progress bar */
+	--progress-bar-bg: var(--nexora-primary);
+
+	/* Background/text pairs (status pills, indicators) */
+	--bg-red: var(--nexora-danger-100);
+	--bg-green: var(--nexora-success-100);
+	--bg-blue: var(--nexora-info-100);
+	--bg-yellow: var(--nexora-warning-100);
+	--bg-orange: var(--nexora-highlight-100);
+	--bg-gray: var(--nexora-neutral-100);
+	--bg-purple: #ede9fe;
+
+	--text-on-red: var(--nexora-danger-700);
+	--text-on-green: var(--nexora-success-700);
+	--text-on-blue: var(--nexora-info-700);
+	--text-on-yellow: var(--nexora-warning-700);
+	--text-on-orange: #9c3a0d;
+	--text-on-gray: var(--nexora-neutral-800);
+	--text-on-purple: #5b21b6;
+
+	/* Highlights */
+	--highlight-color: var(--nexora-neutral-100);
+	--highlight-shadow: 0 0 0 2px var(--nexora-primary-subtle-border);
+
+	/* Scrollbars */
+	--scrollbar-thumb-color: var(--nexora-neutral-300);
+	--scrollbar-track-color: transparent;
+
+	/* UI elements */
+	--skeleton-bg: var(--nexora-neutral-150);
+	--date-active-text: #ffffff;
+	--date-active-bg: var(--nexora-primary);
+	--date-range-bg: var(--nexora-primary-subtle);
+	--timeline-badge-color: var(--nexora-text-muted);
+	--timeline-badge-bg: var(--nexora-neutral-100);
+	--sidebar-select-color: var(--nexora-neutral-100);
+	--subtle-accent: var(--nexora-neutral-50);
+	--subtle-fg: var(--nexora-neutral-100);
+
+	/* Error / status */
+	--error-bg: var(--nexora-danger-50);
+	--error-border: var(--nexora-danger-100);
+
+	/* Toasts */
+	--toast-bg: var(--nexora-surface-fg);
+
+	/* Dropdown */
+	--dropdown-color: var(--nexora-text);
+	--dropdown-bg: var(--nexora-surface-fg);
+	--dropdown-border-color: var(--nexora-border);
+	--dropdown-link-color: var(--nexora-text);
+	--dropdown-link-hover-bg: var(--nexora-surface-hover);
+
+	/* Code blocks */
+	--code-block-bg: var(--nexora-neutral-900);
+	--code-block-text: var(--nexora-neutral-200);
+}
+
+/* ================================================================
+   Theme: Nexora Default — Dark Mode
+   ================================================================ */
+
+html[data-nexora-theme="default"][data-theme="dark"] {
+	/* ---- 60%: dominant page surface ---- */
+	--nexora-bg: #14161a;
+	--nexora-bg-sunken: #0f1114;
+
+	/* ---- 30%: secondary surfaces ---- */
+	--nexora-surface-bg: #14161a;
+	--nexora-surface-fg: #1b1e23;
+	--nexora-surface-raised: #23272e;
+	--nexora-surface-hover: #262b32;
+	--nexora-surface-active: #2d323a;
+	--nexora-sidebar-bg: #1b1e23;
+	--nexora-card-bg: #1b1e23;
+	--nexora-card-header-bg: transparent;
+	--nexora-table-header-bg: #23272e;
+
+	--nexora-navbar-bg: #17292c;
+	--nexora-navbar-fg: #e6eded;
+
+	--nexora-light-bg: var(--nexora-bg);
+	--nexora-lit-ver-bg: #e8eaee;
+
+	/* ---- Borders ---- */
+	--nexora-border: #2f353d;
+	--nexora-border-subtle: #262b32;
+	--nexora-border-strong: #3d444e;
+
+	/* ---- Text ---- */
+	--nexora-text: #e7e9ec;
+	--nexora-text-heading: #f3f4f6;
+	--nexora-text-muted: #a3aab4;
+	--nexora-text-subtle: #8b939e;
+	--nexora-text-disabled: #6b727c;
+
+	/* ---- 10%: accent ---- */
+	--nexora-primary: var(--nexora-accent-600);
+	--nexora-primary-hover: var(--nexora-accent-500);
+	--nexora-primary-active: var(--nexora-accent-700);
+	--nexora-primary-contrast: #ffffff;
+	--nexora-primary-subtle: rgba(235, 85, 75, 0.14);
+	--nexora-primary-subtle-border: rgba(235, 85, 75, 0.4);
+
+	--nexora-secondary: var(--nexora-secondary-800);
+	--nexora-secondary-hover: var(--nexora-secondary-700);
+	--nexora-secondary-active: var(--nexora-secondary-600);
+	--nexora-secondary-contrast: #ffffff;
+
+	--nexora-accent: var(--nexora-accent-600);
+	--nexora-highlight: var(--nexora-highlight-500);
+
+	/* ---- Frappe CSS variable mappings (dark) ---- */
+	--bg-color: var(--nexora-bg);
+	--fg-color: var(--nexora-surface-fg);
+	--navbar-bg: var(--nexora-navbar-bg);
+	--card-bg: var(--nexora-card-bg);
+	--modal-bg: var(--nexora-surface-fg);
+	--popover-bg: var(--nexora-surface-fg);
+	--control-bg: var(--nexora-surface-raised);
+	--control-bg-on-gray: var(--nexora-surface-raised);
+	--awesomebar-focus-bg: var(--nexora-surface-raised);
+
+	--text-color: var(--nexora-text);
+	--text-muted: var(--nexora-text-muted);
+	--text-light: var(--nexora-text-subtle);
+	--text-dark: var(--nexora-text);
+	--heading-color: var(--nexora-text-heading);
+
+	--primary: var(--nexora-primary);
+	--brand-color: var(--nexora-primary);
+	--primary-color: var(--nexora-primary);
+
+	--btn-primary: var(--nexora-primary);
+	--btn-default-bg: var(--nexora-surface-raised);
+	--btn-default-hover-bg: var(--nexora-surface-hover);
+
+	--border-color: var(--nexora-border);
+	--dark-border-color: var(--nexora-border-strong);
+	--border-primary: var(--nexora-primary);
+	--table-border-color: var(--nexora-border);
+	--btn-group-border-color: var(--nexora-border);
+
+	--focus-default: 0px 0px 0px 2px var(--nexora-primary-subtle-border);
+	--focus-blue: 0px 0px 0px 2px var(--nexora-primary-subtle-border);
+	--focus-green: 0px 0px 0px 2px var(--nexora-success-500);
+	--focus-yellow: 0px 0px 0px 2px var(--nexora-warning-500);
+	--focus-red: 0px 0px 0px 2px var(--nexora-danger-600);
+
+	--input-disabled-bg: var(--nexora-surface-raised);
+	--disabled-text-color: var(--nexora-text-muted);
+	--disabled-control-bg: var(--nexora-surface-raised);
+
+	--checkbox-gradient: linear-gradient(180deg, var(--nexora-primary) 0%, var(--nexora-primary) 100%);
+	--checkbox-focus-shadow: 0 0 0 2px var(--nexora-primary-subtle-border);
+	--switch-bg: var(--nexora-neutral-600);
+
+	--progress-bar-bg: var(--nexora-primary);
+
+	--bg-red: #3a1513;
+	--bg-green: #10352a;
+	--bg-blue: #14293f;
+	--bg-yellow: #3a2a0c;
+	--bg-orange: #3d2210;
+	--bg-gray: #2a2f36;
+	--bg-purple: #2b2150;
+
+	--text-on-red: #fecaca;
+	--text-on-green: #bbf7d0;
+	--text-on-blue: #bfdbfe;
+	--text-on-yellow: #fde68a;
+	--text-on-orange: #fed7aa;
+	--text-on-gray: #e7e9ec;
+	--text-on-purple: #ddd6fe;
+
+	--highlight-color: var(--nexora-surface-raised);
+	--highlight-shadow: 0 0 0 2px var(--nexora-primary-subtle-border);
+
+	--scrollbar-thumb-color: #3d444e;
+	--scrollbar-track-color: transparent;
+
+	--skeleton-bg: var(--nexora-surface-raised);
+	--date-active-text: #ffffff;
+	--date-active-bg: var(--nexora-primary);
+	--date-range-bg: var(--nexora-primary-subtle);
+	--timeline-badge-color: var(--nexora-text-muted);
+	--timeline-badge-bg: var(--nexora-surface-raised);
+	--sidebar-select-color: var(--nexora-surface-raised);
+	--subtle-accent: var(--nexora-surface-raised);
+	--subtle-fg: var(--nexora-surface-raised);
+
+	--error-bg: rgba(195, 17, 12, 0.14);
+	--error-border: rgba(195, 17, 12, 0.35);
+
+	--toast-bg: var(--nexora-surface-raised);
+
+	--dropdown-color: var(--nexora-text);
+	--dropdown-bg: var(--nexora-surface-fg);
+	--dropdown-border-color: var(--nexora-border);
+	--dropdown-link-color: var(--nexora-text);
+	--dropdown-link-hover-bg: var(--nexora-surface-hover);
+
+	--code-block-bg: #0f1114;
+	--code-block-text: var(--nexora-neutral-300);
+
+	--diff-added: #10352a;
+	--diff-removed: #3a1513;
+	--diff-changed: #14293f;
+}
+
+/* ================================================================
+   Neutral / grayscale CSS variable overrides for Frappe
+   ================================================================ */
+
+html[data-nexora-theme="default"] {
+	--gray-50: var(--nexora-neutral-50);
+	--gray-100: var(--nexora-neutral-100);
+	--gray-200: var(--nexora-neutral-200);
+	--gray-300: var(--nexora-neutral-300);
+	--gray-400: var(--nexora-neutral-400);
+	--gray-500: var(--nexora-neutral-500);
+	--gray-600: var(--nexora-neutral-600);
+	--gray-700: var(--nexora-neutral-700);
+	--gray-800: var(--nexora-neutral-800);
+	--gray-900: var(--nexora-neutral-900);
+
+	--icon-stroke: var(--nexora-text-muted);
+	--icon-fill-bg: var(--nexora-text);
+
+	--right-arrow-svg: url("data:image/svg+xml;utf8, <svg width='6' height='8' viewBox='0 0 6 8' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M1.25 7.5L4.75 4L1.25 0.5' stroke='%234a525c' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+	--left-arrow-svg: url("data:image/svg+xml;utf8, <svg width='6' height='8' viewBox='0 0 6 8' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M7.5 9.5L4 6l3.5-3.5' stroke='%234a525c' stroke-linecap='round' stroke-linejoin='round'></path></svg>");
+}
+
+html[data-nexora-theme="default"][data-theme="dark"] {
+	--icon-stroke: var(--nexora-text-muted);
+	--icon-fill-bg: var(--nexora-text);
+
+	--right-arrow-svg: url("data:image/svg+xml;utf8, <svg width='6' height='8' viewBox='0 0 6 8' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M1.25 7.5L4.75 4L1.25 0.5' stroke='%23a3aab4' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+	--left-arrow-svg: url("data:image/svg+xml;utf8, <svg width='6' height='8' viewBox='0 0 6 8' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M7.5 9.5L4 6l3.5-3.5' stroke='%23a3aab4' stroke-linecap='round' stroke-linejoin='round'></path></svg>");
+
+	--gray-50: #1b1e23;
+	--gray-100: #23272e;
+	--gray-200: #2f353d;
+	--gray-300: #3d444e;
+	--gray-400: #576070;
+	--gray-500: #8b939e;
+	--gray-600: #a3aab4;
+	--gray-700: #c2c7cf;
+	--gray-800: #d7dbe0;
+	--gray-900: #e7e9ec;
+}
