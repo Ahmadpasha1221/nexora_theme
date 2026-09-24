@@ -1,14 +1,14 @@
 /**
  * Nexora Starfield — Canvas-based animated starfield for the login page.
- *
+ **
  * Architecture: canvas-based (chosen over CSS/DOM for performance, memory, and
  * animation control). Inspired by pernebye/starfield-canvas.
- *
+ **
  * Layers:
  *   1. Distant stars — very small, slow drift, low opacity
  *   2. Mid stars — small, subtle twinkle, moderate opacity
  *   3. Foreground stars — slightly larger, slow movement, higher opacity
- *
+ **
  * Shooting stars appear occasionally, triggered by randomized intervals.
  * All animation is gated behind prefers-reduced-motion and mobile detection.
  */
