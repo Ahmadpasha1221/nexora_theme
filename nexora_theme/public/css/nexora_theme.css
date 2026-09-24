@@ -1266,7 +1266,9 @@ html[data-nexora-theme="default"] .widget.number-widget-box .widget-body .widget
 	color: var(--nexora-lit-ver-bg);
 }
 
-/* [data-page-route=Workspaces] .codex-editor .codex-editor__redactor .ce-block .ce-block__content */
+ html[data-nexora-theme="default"] .codex-editor .codex-editor__redactor .ce-block .ce-block__content {
+	color: var(--nexora-lit-ver-bg);
+ }
 
  html[data-nexora-theme="default"]  .page-container .layout-side-section {
     overflow-y: auto;
