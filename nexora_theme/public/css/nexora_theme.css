@@ -1256,3 +1256,19 @@ html[data-nexora-theme="default"] .widget.number-widget-box .widget-head .widget
 html[data-nexora-theme="default"] .widget.number-widget-box .widget-body .widget-content .number{
 	color: var(--nexora-lit-ver-bg);
 }
+
+/* [data-page-route=Workspaces] .codex-editor .codex-editor__redactor .ce-block .ce-block__content */
+
+ html[data-nexora-theme="default"]  .page-container .layout-side-section {
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+html[data-nexora-theme="default"]  .page-container .layout-side-section::-webkit-scrollbar {
+    display: none;
+}
+
+html[data-nexora-theme="default"]  .new-timeline .timeline-item{
+	color: var(--nexora-navbar-bg);
+}
