@@ -2,7 +2,7 @@
 
 A modern flat-design theme for Frappe Framework, providing a clean, minimal, responsive, and consistent user interface.
 
-## Installation
+### Installation
 
 You can install this app using the [bench](https://github.com/frappe/bench) CLI:
 
