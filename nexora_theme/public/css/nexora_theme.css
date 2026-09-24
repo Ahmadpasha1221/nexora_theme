@@ -1236,9 +1236,12 @@ html[data-nexora-theme="default"] .field {
 }
 
 html[data-nexora-theme="default"] .field:hover,
-html[data-nexora-theme="default"] .field.hovered,
-html[data-nexora-theme="default"] .field.selected {
+html[data-nexora-theme="default"] .field.hovered {
 	border-color: var(--nexora-border);
+}
+
+html[data-nexora-theme="default"] .field.selected {
+	border-color: var(--nexora-border-strong);
 }
 
 html[data-nexora-theme="default"] .frappe-control {
